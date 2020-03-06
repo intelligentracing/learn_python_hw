@@ -1,0 +1,20 @@
+Ex1.1
+    List.extend(List)
+    结果：将List里的element添加到List后面 原因：extend（）函数用于在列表末尾一次性追加另一个序列的值
+    str（List）
+    结果：将List的类型转换成String 原因：str（）函数将输入转换成字符型变量和常量
+Ex1.2
+    (1)L1[0]不等于L1[2],L2[0]等于L2[2]
+    (2)L1=[['c', 'b'], 2, ['a', 'b']]，L2=[['c', 'b'], 2, ['a', 'b']]
+Ex1.3
+    (1)list.append 将对象做为一个元素加入list ，list.extend将对象中的每个元素加入list
+       注：AttributeError: 'str' object has no attribute 'append'（不存在String.append）
+       eg.  List = ['a','b','c']
+            L=list(''.join(List))
+            List.append(List)
+            L.extend(L)
+            print((L))
+            print((List))
+            terminal:['a', 'b', 'c', 'a', 'b', 'c']
+                     ['a', 'b', 'c', [...]]
+       str()是把List整体转换为str，而''.join()是把list的元素转换为str
