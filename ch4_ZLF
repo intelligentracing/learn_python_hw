@@ -18,3 +18,18 @@ Ex1.3
             terminal:['a', 'b', 'c', 'a', 'b', 'c']
                      ['a', 'b', 'c', [...]]
        str()是把List整体转换为str，而''.join()是把list的元素转换为str
+附解释代码：
+string = 'Python'
+List = list(string)
+S=''.join(List)
+x = ' '.join(List)
+y = '1'.join(List)
+t = string.join(List)
+
+
+print(List)
+print(S)
+print(x)
+print(t)
+print(y)
+print(type(S))
