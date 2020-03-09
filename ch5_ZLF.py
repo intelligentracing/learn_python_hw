@@ -21,11 +21,11 @@ def how_many_lunar_years():
 
 def random_number_in_order():
     import random
-    A = B = C = D = E = F = G = H = Y = J = K = None
-    List = [A,B,C,D,E,F,G,H,Y,J,K]
+    
+    List = []
     List2= []
     for Z in range(0,11):
-        List[Z] = random.randint(0,100)
+        List.append(random.randint(0,100))
     for D in range(0,100):
         for Z in range(0,11):
             if List[Z] == D:
