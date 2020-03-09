@@ -1,6 +1,7 @@
 #ex2
 leap_years=[]
-The_year=input('please provide an integer limit to finding leap year:')
+The_year1=input('please provide an integer limit to finding leap year:')
+The_year2=input('please provide an integer limit to finding leap year:')
 try:
     The_year=int(The_year)
 except:
