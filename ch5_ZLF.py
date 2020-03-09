@@ -24,10 +24,10 @@ def random_number_in_order():
     
     List = []
     List2= []
-    for Z in range(0,11):
+    for Z in range(0,10):
         List.append(random.randint(0,100))
     for D in range(0,100):
-        for Z in range(0,11):
+        for Z in range(0,10):
             if List[Z] == D:
                 List2.append(List[Z])
     print(List2)
