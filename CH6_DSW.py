@@ -41,3 +41,5 @@ print(animal[0])
 # ********  Case 8: Wrong use of quotation marks
 wrong_string = "Mike's story"
 print(wrong_string)
+#第二题
+#问题是指在2038年会遇到千年虫问题，因为32位系统即2的32次方只能用到2038年，如果不淘汰掉并换上64位的话，时间将重回1900
