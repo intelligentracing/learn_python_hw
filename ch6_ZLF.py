@@ -45,3 +45,8 @@ print(animals[0])
 # ********  Case 8: Wrong use of quotation marks
 wrong_string = 'Mike\'s story'
 print(wrong_string)
+
+#2038问题解决办法：
+# 1.直接改为64位模式
+#2.改为无符号的integer
+#3.升级64位操作系统.(最优解)
