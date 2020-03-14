@@ -77,16 +77,26 @@ print(elapsed_time)
 print(result[0:20])
 
 
-def generate(self, numRows: int) -> List[List[int]]:
-        if numRows==0:return []
-        triangle=[[1]]
-        if numRows==1: return triangle
-        for i in range(1,numRows):
-            tmp=[1]
-            for j in range(1,i):
-                tmp.append(triangle[i-1][j-1]+triangle[i-1][j])
-            tmp.append(1)
-            triangle.append(tmp)
-        return triangle
+def triangle(List,n=10):
+    if len(List)<=n:
+        List1=List.copy()
+        List=[]
+        if List1!=[]:
+            List.append(1)
+            for x in range(0,len(List1)-1):
+                List.append(List1[x]+List1[x+1])
+            List.append(1)
+            for n in range(0,n-len(List1)+25):
+                print(" ",end="")
+            print(List)
 
+        else:
+            List = List1 =[1]
+            for x in range(0,n-len(List1)+25):
+                print(" ",end="")
+            print(List)
+        triangle(List)
+    
+
+triangle([],11)
 
