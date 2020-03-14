@@ -94,18 +94,6 @@ def merge_sort(input_list,reverse=False):
 # Generate a sufficiently long list for sorting
 sample_count = 10000
 random_input = random.sample(range(0, sample_count),sample_count)
-
-# ******** Method 1: Insert Sort ********
-print('*** Insert Sort ***')
-result = random_input.copy()
-begin_time = time.time()
-insert_sort(result, True)
-
-# tic-toc 
-elapsed_time = time.time() - begin_time
-print(elapsed_time)
-print(result[0:20])
-
 # ******** Method 2: Merge Sort ********
 print('*** Merge Sort ***')
 result = random_input.copy()
