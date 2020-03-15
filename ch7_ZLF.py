@@ -2,7 +2,7 @@ import random
 import time
 
 
-def merge_sort(input_list,reverse=False):
+def merge_sort(input_list,reverse=True):
  
     # Deploy Divide-and-Conquer
     if len(input_list)>1:
@@ -60,8 +60,8 @@ def merge_sort(input_list,reverse=False):
 
 
 # Generate a sufficiently long list for sorting
-sample_count = 10000
-random_input = random.sample(range(0, sample_count),sample_count)
+sample_count = 100
+random_input = random.sample(range(0, sample_count),10)
 
 
 
@@ -69,12 +69,12 @@ random_input = random.sample(range(0, sample_count),sample_count)
 print('*** Merge Sort ***')
 result = random_input.copy()
 begin_time = time.time()
-merge_sort(result)
+merge_sort(result,)
 
 # tic-toc 
 elapsed_time = time.time() - begin_time
 print(elapsed_time)
-print(result[0:20])
+print(result[0:20],)
 
 
 def triangle(List,n=10):
