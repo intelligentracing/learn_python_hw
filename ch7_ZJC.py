@@ -8,7 +8,7 @@ def merge_sort(input_list,reverse=False):
     if reverse==False:
         if len(input_list)>1:
             if type(input_list)!=list:#检查
-                return False
+            return False
             mid = len(input_list)//2
             left_half = input_list[:mid]
             right_half = input_list[mid:]
