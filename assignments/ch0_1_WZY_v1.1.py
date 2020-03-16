@@ -3,7 +3,7 @@ import time
 print("please input the range you need.")
 Points=eval(input())   
 begin_time=time.time()
-hits=0.0 
+hits=0.0
 for i in range (0,Points+1):
     x=random.randint(0,Points+1)
     y=random.randint(0,Points+1)
