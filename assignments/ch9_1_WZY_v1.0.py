@@ -18,7 +18,7 @@ def DFS(board_size, start, goal, legit_moves):
     '''
     # Input sanity check
     if len(board_size)!=2 or type(board_size[0])!=int or type(board_size[1])!=int:
-        raise TypeError('Board size is not a compatible type')
+        raise TypeError('5Board size is not a compatible type')
     elif board_size[0]<=0 or board_size[1]<=0:
         raise ValueError('Board size value is not supported')
 
@@ -55,16 +55,16 @@ def DFS(board_size, start, goal, legit_moves):
              
             # This move may be out of bound or have been visited
             if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
-                or move_position[1]>=board_size[1] or (move_position[0]!=2 and move_position[1]!=2) or \
-                    (move_position[0]!=2 and move_position[1]!=3) or \
-                    (move_position[0]!=2 and move_position[1]!=4) or \
-                    (move_position[0]!=2 and move_position[1]!=5) or \
-                    (move_position[0]!=3 and move_position[1]!=2) or \
-                    (move_position[0]!=3 and move_position[1]!=3) or \
-                    (move_position[0]!=3 and move_position[1]!=4) or \
-                    (move_position[0]!=3 and move_position[1]!=5):
+                or move_position[1]>=board_size[1] or (move_position[0]==2 and move_position[1]==2) or \
+                    (move_position[0]==2 and move_position[1]==3) or \
+                    (move_position[0]==2 and move_position[1]==4) or \
+                    (move_position[0]==2 and move_position[1]==5) or \
+                    (move_position[0]==3 and move_position[1]==2) or \
+                    (move_position[0]==3 and move_position[1]==3) or \
+                    (move_position[0]==3 and move_position[1]==4) or \
+                    (move_position[0]==3 and move_position[1]==5):
                 continue
-            elif parent_map[move_position[0]][move_position[1]]!=[None, None]:
+            elif parent_map[move_position[0]][move_position[1]]==[None, None]:
                 continue
 
             # This is a valid position
