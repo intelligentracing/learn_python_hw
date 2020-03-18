@@ -19,9 +19,9 @@ def pascal_triangle(n):
 
     return triangle
 
-n = 8
+n = 5
 
-result = pascal_triangle(5)
+result = pascal_triangle(n)
 print(result)
 
 for row in result:
