@@ -1,0 +1,9 @@
+if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
+                or move_position[1]>=board_size[1] or (move_position[0]==2 and move_position[1]==2) or \
+                    (move_position[0]==2 and move_position[1]==3) or \
+                    (move_position[0]==2 and move_position[1]==4) or \
+                    (move_position[0]==2 and move_position[1]==5) or \
+                    (move_position[0]==3 and move_position[1]==2) or \
+                    (move_position[0]==3 and move_position[1]==3) or \
+                    (move_position[0]==3 and move_position[1]==4) or \
+                    (move_position[0]==3 and move_position[1]==5):
