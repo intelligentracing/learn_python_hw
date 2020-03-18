@@ -1,5 +1,9 @@
 def pascal_triangle(n):
 
+    if type(n)!=int:
+        raise TypeError('Argument 1 must be integer.')
+    elif n<=0:
+        raise ValueError('Argument 1 integer must be > 0 for the pascal triangle level.')
     triangle = []
     triangle.append([1])
     for row in range(1, n):
@@ -17,7 +21,7 @@ def pascal_triangle(n):
 
 n = 8
 
-result = pascal_triangle(n)
+result = pascal_triangle(5)
 print(result)
 
 for row in result:
