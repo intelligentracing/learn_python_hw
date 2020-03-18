@@ -16,7 +16,7 @@ else:#如果用户输入是1，2，3
      print("Computer input is ",ComputerInput) #告知用户电脑输入为
      if user_input==computer_input:#如果用户输入和电脑输入相等
           print("Draw")#告知平局
-    elif user_input-computer_input==1 or user_input-computer_input==-2:#如果用户输入赢了电脑输入
+     elif user_input-computer_input==1 or user_input-computer_input==-2:#如果用户输入赢了电脑输入
          print("You Win!")#告知胜利
-    else:#如果用户输入输了电脑输入
+     else:#如果用户输入输了电脑输入
          print("You Lose!")#告知失败

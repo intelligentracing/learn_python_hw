@@ -3,14 +3,14 @@ def input_sort(input_deque, reverse):
     if type(input_deque)!=deque or type(reverse)!=bool:
         return "What did you put in?"
     else:
-        for i in range(0,len(input_deque)):
+        for i in range(0,int((len(input_deque)+1)*len(input_deque)/2)):#重复次数未知
             a=input_deque.popleft()
             aIsSmaller=False
             times=0
             while (aIsSmaller==False):
                 b=input_deque.popleft()
-                if a<b or times>len(input_deque):
-                    aIsSmaller==True
+                if (a<b or times>len(input_deque)):
+                    aIsSmaller=True
                     input_deque.append(a)
                 times+=1
                 input_deque.append(b)

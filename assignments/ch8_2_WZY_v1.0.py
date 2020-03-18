@@ -1,9 +1,9 @@
 from collections import deque
-
+   
 def in_place_sort(input_deque, reverse):
     if type(input_deque)!=deque or type(reverse)!=bool:
         return "What did you put in?"
-    else:
+    else: 
         sorted_deque=deque()
         for i in range(0,len(input_deque)):
             min=float("inf")
