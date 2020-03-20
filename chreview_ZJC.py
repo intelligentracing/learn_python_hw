@@ -8,8 +8,8 @@ def hanoi(n,x,y,z):
         print(x,"-->",y)
         hanoi(n-1,y,x,z)
 while True:
-
     hanoi(n,"x","y","z")
+    break
 #第二题
 def fib_loop_while(max):
     a, b = 0, 1
