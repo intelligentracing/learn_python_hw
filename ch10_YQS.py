@@ -5,7 +5,10 @@ def DP_num(n，flag = 1):
     - Input: n an integer >=0, flag:insure n first time into function times == 1
     - Output: number of steps
     '''
-    times = 1
+     if flag == 1:
+        times = 1
+    else:
+        times = 0
     if n < 0:
         raise ValueError('argument must be greater than zero.')
     if n > 1:
