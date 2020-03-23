@@ -1,13 +1,13 @@
 #ex1.1
-def DP_num(n):
-    ''' More efficiently solving fibonacci using a global variable to remember sub-problems
+def DP_num(n，flag = 1):
+    ''' More efficiently solving  less steps into 1
     Parameters:
-    - Input: n an integer >=0
-    - Output: Integer Fibonacci number
+    - Input: n an integer >=0, flag:insure n first time into function times == 1
+    - Output: number of steps
     '''
     times = 1
     if n < 0:
-        raise ValueError('Fibonacci argument must be greater than zero.')
+        raise ValueError('argument must be greater than zero.')
     if n > 1:
        if n % 3 == 0:
            times += DP_num(n/3)
@@ -18,7 +18,8 @@ def DP_num(n):
 
     print (times)
     return times
-
+flag = 0
+print(DP_num(10,flag))
 #ex1.2
 price = [3,5,8,9,10,17,17,20]
 n = 8
