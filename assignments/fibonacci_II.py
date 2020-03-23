@@ -6,7 +6,7 @@ def fibonacci(i):
     else:
         a=0
         b=1
-        for k in range(0,i):
+        for k in range (i):
             c=a+b
             a=b
             b=c
@@ -14,4 +14,4 @@ def fibonacci(i):
 
 print("Which one you need?")
 i=int(input())
-print(str(fibonacci(i)))
+print(fibonacci(i))
