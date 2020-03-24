@@ -33,13 +33,28 @@ def move(z,y):#使myhun方法中的过程对盘子进行操作
         print(z)
 
 def khd():#整合用户输入并实现move方法
-    int (input("输入圆盘数量"))
-    move(panzi(5),myhun(5))
+    q = int (input("输入圆盘数量"))
+    move(panzi(q),myhun(q))
 
 khd()#方法实现
 '''整个方法以更形象的方式输出，其中核心方法部分从网上借鉴。
    输出的值为一行一个list，即为步骤，每个list中的三个list
    为三个柱子。'''
+
+
+
+t_4=time.time()
+def fab(n):
+    if n<= 2:
+        return n-1
+    return fab(n-1)+fab(n-2)
+
+print(fab(5))
+t_3=time.time()
+t_end_1=t_4-t_3
+print(t_end_1)
+
+
 
 
 t_1=time.time()
@@ -53,3 +68,36 @@ print(fib(30))
 t_2=time.time()
 t_end=t_2-t_1
 print(t_end)
+
+import time
+
+t_4=time.time()
+def fab(n):
+    if n<= 2:
+        return n-1
+    return fab(n-1)+fab(n-2)
+
+print(fab(5))
+t_3=time.time()
+t_end_1=t_4-t_3
+print(t_end_1)
+
+
+
+
+t_1=time.time()
+def fib(n):
+    f=[0,1]
+    for a in range(2,n):
+        f.append(f[a-2]+f[a-1])
+    return f[n-1]
+
+print(fib(30))
+t_2=time.time()
+t_end=t_2-t_1
+print(t_end)
+
+
+
+
+
