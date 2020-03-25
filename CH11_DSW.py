@@ -3,8 +3,7 @@ def optimal_cut(length):
     '''计算不同长度香肠最大卖多少钱
        length:香肠长度
        output:买最多的钱'''
-    if length<=0:
-        return 0
+    length  >1
     if optimal_cut_memory[length] == None:
         max_value=0
         for cut in range (length):
