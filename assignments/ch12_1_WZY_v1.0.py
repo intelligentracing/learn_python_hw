@@ -1,20 +1,16 @@
-#ex1.2
-price = [3,5,8,9,10,17,17,20]
-n = 8
+def optimal_cut(length):
+    if length in memory:
+        return memory[length]
+    else:
+        if length<=0:
+            return 0
+        max_value = 0
+        for cut in range(0, length):
+            max_value = max(max_value, price_list[cut] + optimal_cut(length-cut-1))
+        memory[length]=max_value
+        return max_value
 
-def solution(price, n):
-    dp = [0] * n
-    jm= 0
-    js = 0
-    #dp[0] = price[0]
-    for i in range(n):     
-        dp[i] = price[i]  
-        for j in range(i): 
-            if dp[i - j-1] + dp[j] > dp[i]: 
-                dp[i] = dp[i-j-1] + dp[j]
-                jm= j+1
-                js = i-j
-        print('有',i+1,'米时','切在',jm,'米','剩余 ',js,'米')
-    return dp
-
-print(solution(price,n))
+price_list = [3,5,8,9,10,17,17,20]
+memory=dict()
+result = optimal_cut(len(price_list))
+print(result)
