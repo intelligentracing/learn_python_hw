@@ -1,18 +1,16 @@
-def F(best_step):
-    temp_step=best_step[-1]
-    if temp_step%3==0:
-        temp_step=min(temp_step,temp_step/3)
-    if temp_step%2==0:
-        temp_step=min(temp_step,temp_step/2)
-    if temp_step!=1:
-        temp_step=min(temp_step,temp_step-1)
-    best_step.append(temp_step)
-    if temp_step==1:
-        return best_step
+def optimal_cut(length):
+    if length in memory:
+        return memory[length]
     else:
-        return F(best_step)
+        if length<=0:
+            return 0
+        max_value = 0
+        for cut in range(0, length):
+            max_value = max(max_value, price_list[cut] + optimal_cut(length-cut-1))
+        memory[length]=max_value
+        return max_value
 
-i=100
-best_step =[i]
-print(str(F(best_step)))
-    
+price_list = [3,5,8,9,10,17,17,20]
+memory=dict()
+result = optimal_cut(len(price_list))
+print(result)

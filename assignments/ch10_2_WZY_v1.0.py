@@ -1,17 +1,25 @@
-def fibonacci(i):
-    if type(1)!= int:
-        raise TypeError('Incorrect Fibonacci argument type.')
-    elif 1<0:
-        raise ValueError('Fibonacci argument must be greater than zero.')
+def cut_list(cut_list,d):
+    if d==0:
+        return cut_list
     else:
-        a=0
-        b=1
-        for k in range(0,i):
-            c=a+b
-            a=b
-            b=c
-        return a
+        for i in range(0,d):
+            cut_list.pop()
+        return cut_list
 
-print("Which one you need?")
-i=int(input())
-print(str(fibonacci(i)))
+def optimal_cut(price_list):
+    best_price=0
+    if len(price_list)==1:
+        best_price=price_list[0]
+    if price_list==[]:
+        best_price=0
+    else:
+        length=len(price_list)
+        for i in range (1,length+1):
+            temp_list=cut_list(price_list.copy(),i)
+            temp_price=price_list[i-1]+optimal_cut(temp_list)
+            if temp_price>best_price:
+                best_price=temp_price
+    return best_price
+
+price_list=[3,5,8,9,10,17,17,20]
+print(optimal_cut(price_list))

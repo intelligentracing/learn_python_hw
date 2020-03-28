@@ -1,22 +1,18 @@
-from collections import deque
-from time import time 
-A = deque()
-B = deque()
-C = deque()
-m=0
-def move(disks,N,M):
-    return m+=1
-    print("Times: " +str(m)+" put " + str(disks) +" from " + str(N) +" to " + str(M))
-def hanoi (n,A,B,C):
-    if n == 1:
-        move(1, A, C)
+def F(best_step):
+    temp_step=best_step[-1]
+    if temp_step%3==0:
+        temp_step=min(temp_step,temp_step/3)
+    if temp_step%2==0:
+        temp_step=min(temp_step,temp_step/2)
+    if temp_step!=1:
+        temp_step=min(temp_step,temp_step-1)
+    best_step.append(temp_step)
+    if temp_step==1:
+        return best_step
     else:
-        hanoi(n - 1, A, C, B)
-        move(n, A, C)
-        hanoi(n - 1, B, A, C)
+        return F(best_step)
 
-
-print("Please Enter the number of the disk.")
-disks = int(input())
-hanoi(disks, A, B, C)
-print(">>move " + m + " times,put all Disk in A to C")
+i=100
+best_step =[i]
+print(str(F(best_step)))
+    
