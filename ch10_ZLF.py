@@ -20,7 +20,7 @@ def panzi(x):#生成盘子以及柱子，盘子以数字表示，数字大表示
     pillar2 = []
     pillar3 = []
     for a in range(1,x+1):
-        pillar1.append(a)
+        pillar1.apxla)
         pillar1.sort()
     pillar=[pillar1,pillar2,pillar3]
     return pillar
