@@ -6,6 +6,7 @@
 
 from collections import deque
 import random
+import math
 
 def DFS(board_size, start, goal, legit_moves, current_move):
     ''' DFS search a viable path from start position to goal position on the board_size
@@ -18,82 +19,77 @@ def DFS(board_size, start, goal, legit_moves, current_move):
     Output: result_path - return a DFS path that reaches the goal, otherwise []
     '''
     # Input sanity check
-    if len(board_size)!=2 or type(board_size[0])!=int or type(board_size[1])!=int:
+    if len(board_size)!=2 or type(board_size[0])!=int or type(board_size[1])!=int:#检查棋盘大小及其数字输入的合法性
         raise TypeError('Board size is not a compatible type')
-    elif board_size[0]<=0 or board_size[1]<=0:
+    elif board_size[0]<=0 or board_size[1]<=0:#检查棋盘大小
         raise ValueError('Board size value is not supported')
 
-    if len(start)!=2 or type(start[0])!=int or type(start[1])!=int:
+    if len(start)!=2 or type(start[0])!=int or type(start[1])!=int:#检查起点大小及其数字输入的合法性
         raise TypeError('Start position is not a compatible type')
-    elif start[0]<0 or start[1]<0 or start[0]>=board_size[0] or start[1]>=board_size[1]:
+    elif start[0]<0 or start[1]<0 or start[0]>=board_size[0] or start[1]>=board_size[1]:#检查起点是否超过棋盘
         raise ValueError('Start position value is not supported')
 
-    if len(goal)!=2 or type(goal[0])!=int or type(goal[1])!=int:
+    if len(goal)!=2 or type(goal[0])!=int or type(goal[1])!=int:#检查终点输入合法性
         raise TypeError('Goal position is not a compatible type')
-    elif goal[0]<0 or goal[1]<0 or goal[0]>=board_size[0] or goal[1]>=board_size[1]:
+    elif goal[0]<0 or goal[1]<0 or goal[0]>=board_size[0] or goal[1]>=board_size[1]:#检查终点是否超过棋盘
         raise ValueError('Start position value is not supported')
 
     # Initialization
-    search_stack = deque()    # this is a queue to manage the order of the DFS
-    search_stack.append(start)
+    search_stack = deque()    #最佳路径走法
+    search_stack.append(start)#将起点添加至最佳路径
 
-    # move_parent records the parent notes of the searched moves on the board
-    parent_map  = [[[None,None] for i in range(board_size[1])] for j in range(board_size[0])]
-    is_goal = False
+    parent_map  = [[[None,None] for i in range(board_size[1])] for j in range(board_size[0])]#创建一个棋盘
+    is_goal = False#到达终点设置为否
     
-    while len(search_stack)>0 and not is_goal:
-        
-        # Retrieve the current FIFO position
-        previous_move = current_move
-        current_move = search_stack.pop()
-        parent_map[current_move[0]][current_move[1]] = previous_move
-
-        # Generate all legit moves
-        for i in legit_moves:
+    while len(search_stack)>0 and not is_goal:#当最佳路径走法长度大于0且不在终点上
+       
+        previous_move = current_move#先前的位置等于现在的位置
+        current_move = search_stack.pop()#将现在的位置从最佳路径走法中生成
+        parent_map[current_move[0]][current_move[1]] = previous_move#在地图上添加上一步的坐标,即我从哪里来的
+        temp_stack=[]
+        for i in legit_moves:#生成所有合法路径
             
-            # Generate a potential move
-            move_position = [ current_move[0] + i[0],current_move[1] + i[1]]
+            move_position = [ current_move[0] + i[0],current_move[1] + i[1]]#生成一个合法路径
 
-            # This move may be out of bound or have been visited
             if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
-                or move_position[1]>=board_size[1] or (move_position[0]==2 and move_position[1]==2) or \
-                    (move_position[0]==2 and move_position[1]==3) or \
-                    (move_position[0]==2 and move_position[1]==4) or \
-                    (move_position[0]==2 and move_position[1]==5) or \
-                    (move_position[0]==3 and move_position[1]==2) or \
-                    (move_position[0]==3 and move_position[1]==3) or \
-                    (move_position[0]==3 and move_position[1]==4) or \
-                    (move_position[0]==3 and move_position[1]==5):
-                continue
-            elif parent_map[move_position[0]][move_position[1]]!=[None, None]:
+                or move_position[1]>=board_size[1]:#如果超出棋盘外
+                continue#继续循环
+            elif parent_map[move_position[0]][move_position[1]]!=[None, None]:#如果路径已经走过
+                continue#继续循环
+            else:
+                temp_stack.append(move_position)
+
+        best_position=temp_stack[0]
+
+        for i in temp_stack:
+            absolute_distance=math.sqrt(abs(goal[0]-best_position[0])**2+abs(goal[1]-best_position[1])**2)
+            temp_distance=math.sqrt(abs(goal[0]-i[0])**2+abs(goal[1]-i[1])**2)
+            if absolute_distance>temp_distance:
+                best_position=i
+            else:
                 continue
 
-            # This is a valid position
-            search_stack.append(move_position)
+        search_stack.append(best_position)
 
-            # Check if the new position is the goal
-            if move_position == goal:
-                parent_map[move_position[0]][move_position[1]] = current_move
-                is_goal = True
-                break
+        if best_position == goal:#如果到达终点,所有循环停止
+            parent_map[move_position[0]][move_position[1]] = current_move
+            is_goal = True
+            break
         
-    path_queue = deque()
-    if is_goal:
-        # Assign the found path and quit
+    path_queue = deque()#新建一个路径
+    if is_goal:#如果到了终点
         while is_goal:
-            path_queue.appendleft(move_position)
-            move_position = parent_map[move_position[0]][move_position[1]]
-            if move_position[0]==-1:
-                is_goal = False
+            path_queue.appendleft(move_position)#添加当前的位置
+            move_position = parent_map[move_position[0]][move_position[1]]#将当前的位置移至上一个位置
+            if move_position[0]==-1:#如果到达起点
+                is_goal = False#循环中止
             
     return path_queue
 
+board_size = [8,8]#确认棋盘大小
+current_move = [-1, -1]#确认起始位置
 
-# Assign chess board size. Here half a standard board is used
-board_size = [8,8]
-current_move = [-1, -1]
-
-# Assign constant tuples for allowed knight's eight moves
+#编写合法路径
 knight_moves = [[-2,-1], [-1,-2], [1,-2],[2,-1], [2,1], [1,2], [-1,2], [-2,1]]
 bishop_moves = [[1,1],[-1,1],[1,-1],[-1,-1],\
                [2,2],[-2,2],[2,-2],[-2,-2],\
@@ -131,7 +127,7 @@ king_moves = [[1,1],[1,-1],[-1,1],[-1,-1],\
                [0,-1],[0,1],[1,0],[-1,0]]
 pieces_moves = castle_moves          
 
-# Assign knight's initial position
+#确定开始位置
 pieces_start = [0,0]
 
 # Create a display of the board game problem
