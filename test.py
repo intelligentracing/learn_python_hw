@@ -17,5 +17,5 @@ price_list = [3,5,8,9,10,17,17,20]
 #optimal_cut_memory的第一位将一直为None，因为一直不会调用它
 optimal_cut_memory = [None]*(len(price_list) + 1)
 
-result = optimal_cut(24)
+result = optimal_cut()
 print(result)
