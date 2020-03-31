@@ -48,4 +48,4 @@ class Rectangle(Shape):
         self.area = self.width*self.length
         return self.area
 
-print ((Square(3).plus(Square(3))).area)
+print ((Square(3).plus(Square(3))).get_area())
