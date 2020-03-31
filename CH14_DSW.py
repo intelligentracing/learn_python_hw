@@ -1,6 +1,7 @@
 import os 
 from matplotlib import image
-from matplotlib import pyplot
+from matplotlib import pyplot 
+import numpy
 #第一题
 try:
     source_filename = 'nasdaqlisted.txt'
@@ -33,6 +34,7 @@ finally:
 # Read an image file
 path = os.path.dirname(os.path.abspath(__file__))
 filename = path + '/' + 'lenna.bmp'
+filename1 = path + '/' + 'lena10.jpg'
 data = image.imread(filename)
 
 # Display image information
