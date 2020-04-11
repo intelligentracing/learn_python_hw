@@ -1,21 +1,24 @@
-def optimal_cut(length):
-    """计算不同米数长度的香肠最大能卖多少钱
-        length：香肠的米数
-        output：卖的最多的钱"""
 
-    if length<=0:
-        return 0
-    if optimal_cut_memory[length] == None:
-        max_value = 0
-        for cut in range(length):
-            max_value = max(max_value, price_list[cut] + optimal_cut(length-cut-1))
-        optimal_cut_memory[length] = max_value
-    return optimal_cut_memory[length]
+## This is course material for Introduction to Python Scientific Programming
+## Class 15 Example code: rotation_dot_product.py
+## Author: Allen Y. Yang,  Intelligent Racing Inc.
+##
+## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
 
-price_list = [3,5,8,9,10,17,17,20]
-#optimal_cut_memory是为了储存所有米数的最优解所设的list,因为列表的第一位索引为[0]，但是输入的length最小为1，所以list应该比len(length)大1
-#optimal_cut_memory的第一位将一直为None，因为一直不会调用它
-optimal_cut_memory = [None]*(len(price_list) + 1)
+import numpy as np
+import matplotlib.pyplot as plt
 
-result = optimal_cut()
-print(result)
+def rotationMatrix(degree):
+    c = np.cos(np.radians(degree))
+    s = np.sin(np.radians(degree))
+    return np.array([[c, -s], [s, c]])
+
+v1 = np.array([1.,3.])
+rotation_matrix = rotationMatrix(45)
+
+v2 = rotation_matrix.dot(v1)
+
+plt.arrow(0,0,v1[0],v1[1], head_width=0.8, head_length=0.8, color = 'b')
+plt.arrow(0,0,v2[0],v2[1],head_width=0.8, head_length=0.8, color = 'r')
+plt.axis([-5,5,0,10])
+plt.show()
