@@ -35,7 +35,7 @@ def onclick(event):
 
     # Update A and b
     if x>-10 and x<10 and y>-10 and y<10:
-        x_sample.append(x);  y_sample.append(y)
+        x_sample.append(x**2);  y_sample.append(y**2)
         ob_count +=1
     
     if ob_count==10:
@@ -44,12 +44,12 @@ def onclick(event):
             A[i,0] = x_sample[i]
             A[i,1] = 1.0
 
-        aa = np.linalg.lstsq(A, y_sample, rcond = None)[0]
+        aa = np.linalg.lstsq(A, np.array(y_sample), rcond = None)[0]
 
         # Plot the ellipse
         if aa[0]<=0 or aa[1]<=0: # a^2, b^2 must be positive
             return
-        a = math.sqrt(1/aa[0]); b = math.sqrt(1/aa[1])
+        b = math.sqrt(aa[1]); a = math.sqrt(-1/(aa[0]/b**2))
         x = a*np.cos(theta); y= b*np.sin(theta)
         plt.plot(x,y,'k-', linewidth = 3)
 
