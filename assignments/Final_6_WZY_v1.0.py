@@ -6,6 +6,6 @@
 # using the stack operations of append() and pop(). Design an implementation 
 # of such a function.
 import queue
-def magic(a):
-    temp=a.pop()
-    if temp=
+# def magic(a):
+#     temp=a.pop()
+#     if temp=
