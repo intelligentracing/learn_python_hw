@@ -4,8 +4,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 # Prepare the training and testing data
-X, l = load_iris(return_X_y = True)
-X_train, X_test, l_train, l_test = train_test_split(X, l, test_size = 0.5)
+
 
 # Create kNN classifier
 knn = KNeighborsClassifier(n_neighbors = 3)
@@ -40,7 +39,8 @@ label0 = ['blue']*50
 sample_0.extend(sample_1)
 label1.extend(label0)
 knn = KNeighborsClassifier(n_neighbors = 3)
-knn.fit(sample_0,label_1)
+knn.fit(sample_0,label1)
+
 import numpy as np
 import matplotlib.pyplot as plt
 
