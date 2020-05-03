@@ -5,7 +5,15 @@
 # one can implement the queue function of dequeue (that is, popleft) only 
 # using the stack operations of append() and pop(). Design an implementation 
 # of such a function.
-import queue
-# def magic(a):
-#     temp=a.pop()
-#     if temp=
+from collections import deque
+def magic(a):
+    
+    if len(a)==1:
+        print(a.pop())
+       
+    else:
+        a.pop()
+        magic(a)
+
+a=deque([1,2,3,4,5])
+magic(a)
