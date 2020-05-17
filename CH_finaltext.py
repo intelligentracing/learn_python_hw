@@ -11,7 +11,8 @@ data = image.imread(filename)
 text = bytearray(data)
 hash_md5.update(text)
 print(hash_md5.hexdigest())
-
+ 
+hash_md5 = hashlib.md5()
 data1 = image.imread(filename1)
 text1 = bytearray(data1)
 hash_md5.update(text1)
