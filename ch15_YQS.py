@@ -3,33 +3,33 @@ import matplotlib.pyplot as plt
 import math
 #ex1.1
 
-def rotationMatrix(degree):
-    '''逆时针旋转角度的函数
-    output:是旋转矩阵'''
-    c = np.cos(np.radians(degree))
-    s = np.sin(np.radians(degree))
-    return np.array([[c, -s], [s, c]])
+# def rotationMatrix(degree):
+#     '''逆时针旋转角度的函数
+#     output:是旋转矩阵'''
+#     c = np.cos(np.radians(degree))
+#     s = np.sin(np.radians(degree))
+#     return np.array([[c, -s], [s, c]])
 
-input_times = input('按照XX:XX的时间格式输入任意时间：')
-#input_times是字符串格式，将其中的时间用spilt函数提取出来
-input_times_spilt = input_times.split(':')
-hours = int(input_times_spilt[0])#从字符串变成整数格式
-minutes = int(input_times_spilt[1])
-hours_degree = 360 - (30 * (hours + minutes/60))#时针旋转的角度，因为旋转矩阵是逆时针旋转的，所以需要用360减去它
-minutes_degree = 360 - (6 * minutes)#分针旋转的角度
-#时针和分针原本的向量，他们在x,y坐标系下表示竖直向上长度分别为1和2
-v1 = np.array([0.,1.])
-v2 = np.array([0.,2.])
-rotation_hours = rotationMatrix(hours_degree)
-rotation_minutes = rotationMatrix(minutes_degree)
-#旋转矩阵点乘原来的向量得到的向量，就是按照我们计算出的角度，旋转后的的向量
-v1_new = rotation_hours.dot(v1)
-v2_new = rotation_minutes.dot(v2)
-#打印结果
-plt.arrow(0,5,v1_new[0],v1_new[1], head_width=0.4, head_length=0.4, color = 'b')
-plt.arrow(0,5,v2_new[0],v2_new[1],head_width=0.4, head_length=0.4, color = 'r')
-plt.axis([-5,5,0,10])
-plt.show()
+# input_times = input('按照XX:XX的时间格式输入任意时间：')
+# #input_times是字符串格式，将其中的时间用spilt函数提取出来
+# input_times_spilt = input_times.split(':')
+# hours = int(input_times_spilt[0])#从字符串变成整数格式
+# minutes = int(input_times_spilt[1])
+# hours_degree = 360 - (30 * (hours + minutes/60))#时针旋转的角度，因为旋转矩阵是逆时针旋转的，所以需要用360减去它
+# minutes_degree = 360 - (6 * minutes)#分针旋转的角度
+# #时针和分针原本的向量，他们在x,y坐标系下表示竖直向上长度分别为1和2
+# v1 = np.array([0.,1.])
+# v2 = np.array([0.,2.])
+# rotation_hours = rotationMatrix(hours_degree)
+# rotation_minutes = rotationMatrix(minutes_degree)
+# #旋转矩阵点乘原来的向量得到的向量，就是按照我们计算出的角度，旋转后的的向量
+# v1_new = rotation_hours.dot(v1)
+# v2_new = rotation_minutes.dot(v2)
+# #打印结果
+# plt.arrow(0,5,v1_new[0],v1_new[1], head_width=0.4, head_length=0.4, color = 'b')
+# plt.arrow(0,5,v2_new[0],v2_new[1],head_width=0.4, head_length=0.4, color = 'r')
+# plt.axis([-5,5,0,10])
+# plt.show()
 
 #ex1.2
 #(1)将它的[:2,:2] 的子矩阵复制，得到的矩阵为：[[7,8],[1,3]]
