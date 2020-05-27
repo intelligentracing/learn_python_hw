@@ -34,7 +34,7 @@ queen_moves = [[0,1],[0,-1],[1,0],[-1,0],[0,2],[0,-2],[2,0],[-2,0],[0,3],[0,-3],
 king_moves = [[1,1],[1,-1],[-1,1],[-1,-1],[0,-1],[0,1],[1,0],[-1,0]]
 
 #确认棋子合法路径
-computer_legit_moves = castle_moves  
+computer_legit_moves = knight_moves  
 human_legit_moves=king_moves
 
 #确定基本参数
@@ -96,39 +96,55 @@ def CPM (board_size, computer_legit_moves,human_player_move):
 
 #人类玩家下棋
 def HPM (board_size,legit_moves):
-    #引用全局变量
+    #引用全局变量人类玩家移动步骤
     global human_player_move
+    #收取用户输入
     user_input = input('Please input goal position (x, y): ')
     pieces_goal = list(eval(user_input))
-    possible_move=[]
+    #假设用户输入路径非法
     ilegal=True
-    for i in legit_moves:#生成所有合法路径
-        move_position = [human_player_move[-1][0]+ i[0],human_player_move[-1][1] + i[1]]#生成一个合法路径
+    #生成所有合法路径
+    for i in legit_moves:
+        #生成一个合法路径
+        move_position = [human_player_move[-1][0]+ i[0],human_player_move[-1][1] + i[1]]
+        #如果超出棋盘外
         if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
-            or move_position[1]>=board_size[1]:#如果超出棋盘外
-            continue#继续循环
+            or move_position[1]>=board_size[1]:
+            continue
         else:
-            possible_move.append(move_position)
-    for i in possible_move:
-        if i==pieces_goal:
-            ilegal=False
+            #如果该合法路径与用户输入相同
+            if move_position==pieces_goal:
+                #用户输入合法
+                ilegal=False
+                break
     if ilegal:#检查终点输入合法性
         raise TypeError('Goal position break the rule')
+    #将输入添加到棋盘
     human_player_move.append(pieces_goal)
 
+#打印棋盘
 def board_print(board_size,human_player_move,computer_player_move):
+    #生成空棋盘
     board_display = [[' * ' for i in range(board_size[1])] for j in range(board_size[0])]
+    #将人类玩家与电脑玩家路径填充
     board_display[computer_player_move[-1][0]][computer_player_move[-1][1]] = ' C '
     board_display[human_player_move[-1][0]][human_player_move[-1][1]]  = ' K '
+    #打印棋盘
     for i in range(board_size[0]):
         display_string = ''.join(board_display[i])
         print(display_string)   
      
+#在游戏结束前
 while isGoal==False:
+    #打印棋盘
     board_print(board_size,human_player_move,computer_player_move)
+    #人类玩家移动
     HPM(board_size,human_legit_moves)
+    #打印棋盘
     board_print(board_size,human_player_move,computer_player_move)
+    #电脑玩家移动
     CPM(board_size,computer_legit_moves,human_player_move)
-    print("--------------------")
-
+    #分界线
+    print("---------------------------------------")
+#打印游戏结束
 print("gameover")
