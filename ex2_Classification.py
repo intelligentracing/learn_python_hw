@@ -21,13 +21,11 @@ def proability(x, y):
     proability0 = 1 / (2 * np.pi* sigma0)*np.exp(((x - mu0[0])**2 + (y - mu0[1])**2) / (2*sigma0**2))
     proability1 = 1 / (2 * np.pi * sigma1) * np.exp(((x - mu1[0]) ** 2 + (y - mu1[1]) ** 2) / (2 * sigma1 ** 2))
     if proability0 > proability1:
-        print([round(x,1),round(y,1)],'belonging to Model_0.')
         x_sample_0.append(round(x,1))
         y_sample_0.append(round(y,1))
     plt.plot(x_sample_0,y_sample_0,'r*')
 
-    if proability1 > proability0:
-        print([round(x,1), round(y,1)], 'belonging to Model_1.')
+    if proability1 > proability0: 
         x_sample_1.append(round(x, 1))
         y_sample_1.append(round(y, 1))
     plt.plot(x_sample_1, y_sample_1, 'bD')
