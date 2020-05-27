@@ -18,7 +18,7 @@ else:
 #ex1.2
 
 
-# Initialize the figure and axes
+Initialize the figure and axes
 fig = plt.figure()
 ax = plt.axes()
 ax.set_xlim([-10, 10])
