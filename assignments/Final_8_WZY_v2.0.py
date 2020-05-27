@@ -11,22 +11,13 @@
 # User the terminal print function to update the board situation about the 
 # current positions of the two pieces after each human move and computer move, 
 # respectively.
-## This is course material for Introduction to Python Scientific Programming
-## Class 9 Example code: knight_path_DFS.py
-## Author: Allen Y. Yang,  Intelligent Racing Inc.
-##
-## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
 
-## This is course material for Introduction to Python Scientific Programming
-## Class 9 Example code: knight_path_DFS.py
-## Author: Allen Y. Yang,  Intelligent Racing Inc.
 ##
-## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
-
 from collections import deque
 import random
 import math
 
+#所有棋子的移动方式
 knight_moves = [[-2,-1], [-1,-2], [1,-2],[2,-1], [2,1], [1,2], [-1,2], [-2,1]]
 bishop_moves = [[1,1],[-1,1],[1,-1],[-1,-1],[2,2],[-2,2],[2,-2],[-2,-2],[3,3],[-3,3],[3,-3],[-3,-3],\
                 [4,4],[-4,4],[4,-4],[-4,-4],[5,5],[-5,5],[5,-5],[-5,-5],[6,6],[-6,6],[6,-6],[-6,-6],\
@@ -41,44 +32,71 @@ queen_moves = [[0,1],[0,-1],[1,0],[-1,0],[0,2],[0,-2],[2,0],[-2,0],[0,3],[0,-3],
                [5,5],[-5,5],[5,-5],[-5,-5],[6,6],[-6,6],[6,-6],[-6,-6],[7,7],[-7,7],[7,-7],[-7,-7],\
                [8,8],[-8,8],[8,-8],[-8,-8]]
 king_moves = [[1,1],[1,-1],[-1,1],[-1,-1],[0,-1],[0,1],[1,0],[-1,0]]
+
+#确认棋子合法路径
 computer_legit_moves = castle_moves  
 human_legit_moves=king_moves
 
+#确定基本参数
 isGoal=False
 board_size=[4,8]
+
+#人类玩家路径与电脑玩家路径
 human_player_move=[[3,7]]
 computer_player_move=[[0,0]]
+
+#检查checkmate
 def checkmate (computer_legit_moves,human_player_move,computer_player_move):
+    #循环电脑可能路径
     for i in computer_legit_moves:
         nextmove=[computer_player_move[-1][0]+i[0],computer_player_move[-1][1]+i[1]]
+        #如果电脑的下一步路径与人类玩家位置重合
         if nextmove[0]==human_player_move[-1][0] and nextmove[1]==human_player_move[-1][1]:
+            #checkmte
             print("CHECKMATE")
-    
+
+#电脑下棋  
 def CPM (board_size, computer_legit_moves,human_player_move):
+    #引用全局变量:电脑路径,目标位置
     global computer_player_move,isGoal
-    goal=[human_player_move[0][0],human_player_move[0][1]]
+    #目标位置设定为人类玩家的最后位置
+    goal=[human_player_move[-1][0],human_player_move[-1][1]]
+    #可能的移动路径
     possible_move=[]
-    for i in computer_legit_moves:#生成所有合法路径
-            move_position = [computer_player_move[-1][0]+ i[0],computer_player_move[-1][1] + i[1]]#生成一个合法路径
-            if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
-                or move_position[1]>=board_size[1]:#如果超出棋盘外
-                continue#继续循环
+    #生成所有合法路径
+    for i in computer_legit_moves:
+            #生成一个合法路径
+            move_position = [computer_player_move[-1][0]+ i[0],computer_player_move[-1][1] + i[1]]
+            #若合法路径不在棋盘内
+            if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] or move_position[1]>=board_size[1]:#如果超出棋盘外
+                continue
             else:
+                #将合法路径添加到可能路径中
                 possible_move.append(move_position)
+    #计算最佳路径
     best_position=possible_move[0]
+    #计算所有最优路径
     for i in possible_move:
+        #比较可能路径与最优路径相对于目标位置的绝对距离
         absolute_distance=math.sqrt(abs(goal[0]-best_position[0])**2+abs(goal[1]-best_position[1])**2)
         temp_distance=math.sqrt(abs(goal[0]-i[0])**2+abs(goal[1]-i[1])**2)
+        #比较可能路径与可能最优路径
         if absolute_distance>temp_distance:
             best_position=i
         else:
             continue
+        #将最优路径添加到棋盘
         computer_player_move.append(best_position)
-    if best_position==human_player_move[0]:
+    #若最优路径是棋子当前位置
+    if best_position==human_player_move[-1]:
+        #游戏结束
         isGoal=True
+    #检查checkmate
     checkmate(computer_legit_moves, human_player_move, computer_player_move)
 
+#人类玩家下棋
 def HPM (board_size,legit_moves):
+    #引用全局变量
     global human_player_move
     user_input = input('Please input goal position (x, y): ')
     pieces_goal = list(eval(user_input))
@@ -96,7 +114,7 @@ def HPM (board_size,legit_moves):
             ilegal=False
     if ilegal:#检查终点输入合法性
         raise TypeError('Goal position break the rule')
-    human_player_move.append(pieces_goal)\
+    human_player_move.append(pieces_goal)
 
 def board_print(board_size,human_player_move,computer_player_move):
     board_display = [[' * ' for i in range(board_size[1])] for j in range(board_size[0])]
@@ -107,9 +125,10 @@ def board_print(board_size,human_player_move,computer_player_move):
         print(display_string)   
      
 while isGoal==False:
-    CPM(board_size,computer_legit_moves,human_player_move)
     board_print(board_size,human_player_move,computer_player_move)
     HPM(board_size,human_legit_moves)
     board_print(board_size,human_player_move,computer_player_move)
+    CPM(board_size,computer_legit_moves,human_player_move)
+    print("--------------------")
 
 print("gameover")
