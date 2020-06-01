@@ -13,7 +13,7 @@ width = int(grabber.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(grabber.get(cv2.CAP_PROP_FRAME_HEIGHT))
 output = cv2.VideoWriter(outputFilename, cv2.VideoWriter_fourcc('M', 'J', 'P','G'),\
      fps, (width, height), False)
-
+smoothFilter = np.array([[2,4,5,4,2],[4,9,12,9,4],[5,12,15,12,5],[4,9,12,9,4],[2,4,5,4,2]])/ 159.0
 while(grabber.isOpened()):
     ret, frame = grabber.read()
 
@@ -24,7 +24,7 @@ while(grabber.isOpened()):
     # Create gray image and denoise
     gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     #canny算子的blur kernel如下
-    smoothFilter = np.array([[2,4,5,4,2],[4,9,12,9,4],[5,12,15,12,5],[4,9,12,9,4],[2,4,5,4,2]])/ 159.0
+    
     #用cv2.filter2D（）
     smoothImage = cv2.filter2D(gray_image, -1, smoothFilter)
 
