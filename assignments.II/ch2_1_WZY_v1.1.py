@@ -54,14 +54,14 @@ def correlation_tracking(save_result,tracker):
             faces = face_cascade.detectMultiScale(gray, 1.1, 10)
             #如果监测到面部图像
             if len(faces)>0:
-                #筛选最大图像
+                #筛选最大面部图像
                 largestArea = 0
                 for i in range(len(faces)):
                     if faces[i][2]*faces[i][3] > largestArea:
                         largestArea = faces[i][2]*faces[i][3]
                         largestFace = faces[i]
                 #更新tracker
-                #旧的tracker不能使用,更新
+                #若旧的tracker不能使用,更新
                 temp_tracker = tracker.create()
                 x = max(largestFace[0]-largestFace[2]//2 , 0)
                 y = max(largestFace[1]-largestFace[3]//2, 0)
@@ -120,7 +120,9 @@ save_result = False
 # TrackerBoosting, TrackerMIL, TrackerKCF, TrackerTLD, TrackerMOSSE, TrackerCSRT
 
 tracker = [cv2.TrackerBoosting,cv2.TrackerMIL,cv2.TrackerKCF,cv2.TrackerTLD,cv2.TrackerMOSSE,cv2.TrackerCSRT]
+#循环所有tracker
 for i in tracker:
+    #循环单个tracker
     correlation_tracking(save_result,i)
-
+#销毁所有窗口
 cv2.destroyAllWindows()
