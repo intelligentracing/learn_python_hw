@@ -15,10 +15,15 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 # Extract the data
 import tarfile
+#打开压缩文件
 bunny_tar_file = tarfile.open(path+'/bunny.tar.gz')
+#尝试以下代码
 try:
+    #制作文件路径
     os.mkdir(path+'/bunny_data')
+    #解压并保存到文件夹
     bunny_tar_file.extractall(path+'/bunny_data')
+    #关闭窗口
     bunny_tar_file.close()
 except:
     pass
