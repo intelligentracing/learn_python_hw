@@ -62,6 +62,6 @@ def bunny_rotation(degree, times):
           mlab.points3d(translation_result[0,:], translation_result[1,:],translation_result[2,:],\
                color=(0, 0, 1), mode='point')
                #展示
-          mlab.show()
+     mlab.show()
 
 bunny_rotation([360,0,0], 8)
