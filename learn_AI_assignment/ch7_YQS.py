@@ -1,22 +1,22 @@
 import numpy as np
 #ex1
 #3个自由度，两个平动自由度分别是x和y，和一个Yaw轴/（Z轴）转动自由度
-alpha = input("Enter rotation degrees (alpha): ")
-alpha = float(alpha) /180 * np.pi; beta = float(0) / 180 * np.pi; gamma = float(0) / 180 * np.pi
+# alpha = input("Enter rotation degrees (alpha): ")
+# alpha = float(alpha) /180 * np.pi; beta = float(0) / 180 * np.pi; gamma = float(0) / 180 * np.pi
 
-x,y,z = input("Enter translation (x y z): ").split()
-tx, ty = input("Enter translation (tx ty): ").split()
-#两个平动自由度，tx ,ty,tz = 0
-T = np.stack((float(tx), float(ty), float(0)))
-vectors = np.stack((x, y, z))
-dim, num = vectors.shape
-#只有一个转动自由度，所以只有一个Yaw轴旋转矩阵
-Rz = np.array([[np.cos(alpha), -np.sin(alpha), 0],[np.sin(alpha), np.cos(alpha), 0],[0,0,1]])
-Rx = np.array([[1,0,0],[0,1,0],[0,0,1]])
-Ry = np.array([[1,0,0],[0,1,0],[0,0,1]])
+# x,y,z = input("Enter translation (x y z): ").split()
+# tx, ty = input("Enter translation (tx ty): ").split()
+# #两个平动自由度，tx ,ty,tz = 0
+# T = np.stack((float(tx), float(ty), float(0)))
+# vectors = np.stack((x, y, z))
+# dim, num = vectors.shape
+# #只有一个转动自由度，所以只有一个Yaw轴旋转矩阵
+# Rz = np.array([[np.cos(alpha), -np.sin(alpha), 0],[np.sin(alpha), np.cos(alpha), 0],[0,0,1]])
+# Rx = np.array([[1,0,0],[0,1,0],[0,0,1]])
+# Ry = np.array([[1,0,0],[0,1,0],[0,0,1]])
 
-rotation_result = Rx.dot(Ry.dot(Rz.dot(vectors)))
-translation_result = np.add(rotation_result, T)
+# rotation_result = Rx.dot(Ry.dot(Rz.dot(vectors)))
+# translation_result = np.add(rotation_result, T)
 
 #ex2
 from plyfile import PlyData
