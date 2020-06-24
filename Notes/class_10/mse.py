@@ -9,27 +9,29 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
 # Create data
+#激发函数的偏向值
 x_bias = 0
-
+#分成两个范例
 samples1 = np.random.multivariate_normal([5+x_bias, 0], [[1, 0],[0, 1]], 100)
+#标签设为-1
 labels1 = np.ones(100)*-1
 samples2 = np.random.multivariate_normal([-5+x_bias, 0], [[1, 0],[0, 1]], 100)
+#标签设为1
 labels2 = np.ones(100)
-
+#合并
 samples = np.concatenate((samples1, samples2 ), axis =0)
 labels = np.concatenate((labels1, labels2 ), axis =0)
     
-# Plot the data
+# 画出data
 plt.plot(samples1[:, 0], samples1[:, 1], 'bo')
 plt.plot(samples2[:, 0], samples2[:, 1], 'rx')
 plt.show()
-
+#激发函数
 def sigmoid(x):
     return 1/(1+np.exp(-x))
-
+#激发函数的导
 def sigmoid_d(x):
     return(sigmoid(x)*(1-sigmoid(x)))
-
 def mse(samples, labels, w1, w2):
     result = 0
     count = len(labels)
@@ -38,7 +40,6 @@ def mse(samples, labels, w1, w2):
     
     result = result / count
     return result
-
 def mse_gradient(samples, labels, w1, w2):
     result = np.zeros(2)
     count = len(labels)
