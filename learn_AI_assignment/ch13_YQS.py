@@ -9,7 +9,6 @@ from keras.datasets import cifar100
 import matplotlib.pyplot as plt
 from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
 import numpy as np
-import os
 import glob
 import cv2
 
