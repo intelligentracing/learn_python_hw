@@ -17,6 +17,7 @@ batch_size = 100
 num_classes = 100
 epochs = 100
 
+<<<<<<< HEAD
 # input image dimensions
 img_rows, img_cols, img_depth = 112, 112, 3
 
@@ -26,12 +27,28 @@ img_rows, img_cols, img_depth = 112, 112, 3
 # resize input images to VGG16 input size
 train_n = len(y_train)
 x_train = np.zeros((train_n, img_rows, img_cols, img_depth), dtype = 'uint8')
+=======
+#确定图像维度(参数)
+img_rows, img_cols, img_depth = 112, 112, 3
+
+#加载数据,分离测试组和训练组
+(CIFAR_x_train, y_train), (CIFAR_x_test, y_test) = cifar100.load_data(label_mode = 'fine')
+
+#修改图像大小
+train_n = len(y_train)
+x_train = np.zeros((train_n, img_rows, img_cols, img_depth), dtype = 'uint8')
+#遍历所有图像,训练
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 for i in range(train_n):
     temp_image = CIFAR_x_train[i]
     temp_image = cv2.resize(temp_image, (img_rows, img_cols))
     temp_image = preprocess_input(temp_image)
     x_train[i,:,:,:] = temp_image
+<<<<<<< HEAD
 
+=======
+#遍历所有图像,测试
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 test_n = len(y_test)
 x_test = np.zeros((test_n, img_rows, img_cols, img_depth), dtype = 'uint8')
 for i in range(test_n):
@@ -42,14 +59,22 @@ for i in range(test_n):
 
 input_shape = (img_rows, img_cols, img_depth)
 
+<<<<<<< HEAD
 # When calculating image data, convert from uint8 to float
+=======
+#修改图像格式
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 x_train = x_train.astype('float32')/255
 x_test = x_test.astype('float32')/255
 
 # Reduce the element range from [0, 255] to [0, 1]
 print('x_train shape:', x_train.shape)
 
+<<<<<<< HEAD
 # Image Augmentation
+=======
+#生成垃圾图像(自动增加训练集)
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 train_datagen = ImageDataGenerator(
         width_shift_range=0.25, height_shift_range=0.25, shear_range = 30,
         rotation_range = 10,
@@ -70,7 +95,11 @@ for i in range(len(y_test)):
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+<<<<<<< HEAD
 # To retrain all layers
+=======
+#加载基础模型文件格式
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 baseModel = ResNet50(weights='imagenet', include_top=False, pooling = 'avg', input_tensor=keras.Input(shape=input_shape))
 
 headModel = baseModel.output
@@ -78,10 +107,18 @@ headModel = Dense(num_classes, activation = 'softmax')(headModel)
 
 model = keras.Model(inputs=baseModel.input, outputs = headModel)
 
+<<<<<<< HEAD
 # To train model with decreasing learning rates
 sdg = keras.optimizers.SGD(lr = 0.01,#学习速率
                             decay = 1e-3, #学习效率消减因子
                             momentum = 0.5, #
+=======
+#训练
+#Stochastic gradiant decent
+sdg = keras.optimizers.SGD(lr = 0.01, #学习速率
+                            decay = 1e-3, #学习效率消减因子
+                            momentum = 0.5,  #波动值(防止收敛到局部最优解)
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
                             nesterov = True)
 model.compile(loss=keras.losses.categorical_crossentropy, optimizer=sdg,
               metrics=['accuracy'])

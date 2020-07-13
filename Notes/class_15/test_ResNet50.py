@@ -4,10 +4,13 @@
 ##
 ## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
 
+<<<<<<< HEAD
 #在mac上运行AMDGPU:
 # import os
 #os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
+=======
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 import keras
 from keras.datasets import cifar100
 import matplotlib.pyplot as plt
@@ -18,10 +21,17 @@ import cv2
 model = ResNet50(weights='imagenet')
 print(model.summary())
 
+<<<<<<< HEAD
 # load the data built in Keras, split between train and test sets
 (x_train, y_train), (x_test, y_test) = cifar100.load_data(label_mode = 'fine')
 
 # Test the x_test images without training
+=======
+#加载数据
+(x_train, y_train), (x_test, y_test) = cifar100.load_data(label_mode = 'fine')
+
+#直接测试模型
+>>>>>>> db611735913dd117a197baa4d2b29d3be9095ef1
 plt.figure(1)
 for i in range(len(y_test)):
     test_image = x_test[i]
