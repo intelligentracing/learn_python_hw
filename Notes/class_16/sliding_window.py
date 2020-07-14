@@ -29,12 +29,12 @@ path = os.path.dirname(os.path.abspath(__file__))
 image = cv2.imread(path+'/zebras.jpg')
 
 # First, test the classifier on the full image
-# resized_image = cv2.resize(image,(224,224))
-# resized_image = resized_image.reshape((1, window_size, window_size, 3))
-# resized_image = preprocess_input(resized_image)
-# y_predict = model.predict(resized_image)
-# label = decode_predictions(y_predict)
-# print(label)
+resized_image = cv2.resize(image,(224,224))
+resized_image = resized_image.reshape((1, window_size, window_size, 3))
+resized_image = preprocess_input(resized_image)
+y_predict = model.predict(resized_image)
+label = decode_predictions(y_predict)
+print(label)
 
 def sliding_window_detector(image, window_size, step, classifier, object_string, debug = False):
     ''' The function deploys a generic classifier to detect ROI in images using step size 
