@@ -1,48 +1,43 @@
 #ex1.1
-def DP_num(n，flag = 1):
-    ''' More efficiently solving  less steps into 1
-    Parameters:
-    - Input: n an integer >=0, flag:insure n first time into function times == 1
-    - Output: number of steps
-    '''
-     if flag == 1:
-        times = 1
-    else:
-        times = 0
-    if n < 0:
-        raise ValueError('argument must be greater than zero.')
-    if n > 1:
-       if n % 3 == 0:
-           times += DP_num(n/3)
-       elif n % 2 == 0:
-           times += DP_num(n/2)
-       else:
-           times +=DP_num(n - 1)
+# def DP_num(num):
+#     if num == 1:
+#         return 0
+#     elif num <= 3:
+#         return 1
+    
+#     dp_list = [0]*num
+#     dp_list[0] = 0
+#     dp_list[1] = 1
+#     dp_list[2] = 1
+#     for i in range(4, len(dp_list) + 1):
+#         minn = [dp_list[i - 2]]
+#         if i%2 == 0:
+#             minn.append(dp_list[(i - 1)//2])
+#         if i%3 == 0:
+#             minn.append(dp_list[(i - 1) // 3])
+#         dp_list[i - 1] = min(minn) + 1
+        
+#     return dp_list[-1]
 
-    print (times)
-    return times
-flag = 0
-print(DP_num(10,flag))
+# print(DP_num(10))
+
 #ex1.2
 price = [3,5,8,9,10,17,17,20]
 n = 8
 
 def solution(price, n):
-    """应用子问题最优性来解怎么切最合适问题
-        price：是一个list,里面存放着不同米数所卖的价格
-        n:是一个int,表示这跟肠有多少m"""
+    """Apply subproblem optimality to solve the problem of how best to cut
+        price：It's a list of prices sold for different meters
+        n:It's an int, how many meters are there in this sausage
+    """
     dp = [0] * n
-    jm= 0
-    js = 0
-    #dp[0] = price[0]
-    for i in range(n):      #从1m开始，计算卖最高的价格
-        dp[i] = price[i]    #当i米整体卖时的价格
-        for j in range(i):  #当i米分开卖时价格，分成两截，切都卖最优价格。关键：将大问题转换成小问题，且小问题的最优解也是大问题的最优解。
-            if dp[i - j-1] + dp[j] > dp[i]: #与整体卖比较
+    for i in range(n):      #start at 1 meter, and calculate the highest selling price
+        dp[i] = price[i]    #The price when i meters are sold as a whole
+        for j in range(i):  
+            #When i meters are sold separately。The key: Turn a big problem into a small problem, 
+            #and the optimal solution to the small problem is also the optimal solution to the big problem.
+            if dp[i - j-1] + dp[j] > dp[i]: #Compare that to selling as a whole
                 dp[i] = dp[i-j-1] + dp[j]
-                jm= j+1
-                js = i-j
-        print('有',i+1,'米时','切在',jm,'米','剩余 ',js,'米')
-    return dp
+    return dp[-1]
 
 print(solution(price,n))
