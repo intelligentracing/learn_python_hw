@@ -25,9 +25,11 @@
 text = 'We can know only that we know nothing. And that is the highest degree of human wisdom.'
 
 def histogram_text_words(text):
-    """Count the number of occurrences of each word in the text，
-        text:一段单词组成的字符串
-        output：各个单词与其出现频率相对应的字典"""
+    """
+        Count the number of occurrences of each word in the text，
+        text:A string of words
+        output：A dictionary of words corresponding to their frequency
+    """
 
     histogram = dict()
     words = text.split()
