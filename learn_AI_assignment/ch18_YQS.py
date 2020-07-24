@@ -109,7 +109,7 @@ class DQNAgent:
                     paddle[0] = w
                 else:
                     paddle[1] = w
-        paddle_states.append(paddle[0]);
+        paddle_states.append(paddle[0])
         paddle_states.append(paddle[1])
         # Second update the state of the ball.
         ball = []
@@ -204,6 +204,7 @@ if __name__ == "__main__":
             observe = next_observe;
             info = next_info
             next_observe, reward, done, next_info = env.step(action)
+            #next_info['ale.lives']的命数比上一次info中的少，说明它死掉一次了
             if done or (next_info['ale.lives'] != info['ale.lives']):
                 # Redefine death equal either done or losing a life
                 dead = True
