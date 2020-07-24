@@ -140,12 +140,13 @@ def division_hashing(text):
     """
     global hash_prime_number
     hash_prime_number = 101
-
+    sum1 = 0
+    
     #initialization
     letters = 'abcdefghijklmnopqrstuvwxyz'#start with a 26-letter string
     text_new = list(text)#Change the input string into a list format to make it easier to replace characters later
     text_new_list = []#Stores strings that meet the criteria
-    sum1 = 0
+    
 
     #Replace the characters in text_new with each of the 26 letters
     for i in range(len(text_new)):
