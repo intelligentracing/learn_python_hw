@@ -46,24 +46,97 @@
 #         self.area = self.width * self.length
 #         return self.area
 #EX1.4
+# class Basketball:
+
+#     schedule = []
+
+#     def __init__(self, team_name, team_address, team_coach, team_member ):
+#         self.team_name = str(team_number)
+#         self.team_address = str(team_address)
+#         self.team_coach = str(team_coach)
+#         self.team_member = []
+#         for i in range(team_number):
+#             self.team_player.append(i)
+
+#     def match_game(self, team_player):
+#         self.team_player = team_player
+#         for i in range(len(self.team_player)):
+#             team = random.randint(1,len(self.team_player) - 1)
+#             if i != team:
+#                 schedule.append([i,'VS',team])
+#             else:
+#                 continue
+#         return schedule
+
 class Basketball:
+    def __init__(self, team_name=None, team_address=None, team_coach=None, team_member=[]):
+        self.team_name = team_name
+        self.team_address = team_address
+        self.team_coach = team_coach
+        self.team_member = team_member
+        self.schedule = []
 
-    schedule = []
+    def __str__(self):
+        return self.team_name
 
-    def __init__(self, team_number, team_address, team_coach, team_player ):
-        self.team_number = int(team_number)
-        self.team_address = str(team_address)
-        self.team_coach = str(team_coach)
-        self.team_player = []
-        for i in range(team_number):
-            self.team_player.append(i)
+    def get_team_name(self):
+        return self.team_name
 
-    def match_game(self, team_player):
-        self.team_player = team_player
-        for i in range(len(self.team_player)):
-            team = random.randint(1,len(self.team_player) - 1)
-            if i != team:
-                schedule.append([i,'VS',team])
-            else:
-                continue
-        return schedule
+    def get_team_address(self):
+        return self.team_address
+
+    def get_team_coach(self):
+        return self.team_coach
+
+    def get_team_member(self):
+        return self.team_member
+
+    def set_team_name(self, s):
+        self.team_name = s
+        print("team name modified")
+
+    def set_team_address(self, s):
+        self.team_address = s
+        print("team address modified")
+
+    def set_team_coach(self, s):
+        self.team_coach = s
+        print("team coach modified")
+
+    def set_team_member(self, lis):
+        self.team_member = lis
+        print("team member modified")
+
+    def add_team_member(self, s):
+        self.team_member.append(s)
+        print("add a team member")
+
+    def generate_game(self, component):
+        for i in component:
+            self.schedule.append((self.team_name, i.team_name))
+            self.schedule.append((i.team_name, self.team_name))
+        print("new games add to schedule")
+
+    def get_schedule(self):
+        return self.schedule
+
+
+#######################vehicle calss test start#####################################
+volvo = vehicle('volvo', 'polestar 2', 'sedan')
+volvo.set_fuel_level(0.9)
+volvo.check_fuel_level()
+#######################vehicle class test end#######################################
+
+#######################basketball class test start########################################
+s = string.ascii_uppercase
+league_list = []
+for i in range(16):
+    team_name = random.choice(s)
+    team_name += random.choice(s)
+    league_list.append(Basketball(team_name))
+
+print(league_list[0])
+
+league_list[0].generate_game(league_list[1:])
+print(league_list[0].get_schedule())
+#######################basketball calss test end#####################################
