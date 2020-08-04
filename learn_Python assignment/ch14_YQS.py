@@ -5,7 +5,7 @@ import numpy
 
 #ex1.1
 source_filename = 'nasdaqlisted.txt'
-result_filename = 'result.txt'  # 储存结果的文件
+result_filename = 'result.txt'  # the file that stores the results
 
 try:
     # Obtain current python file's path
@@ -13,18 +13,20 @@ try:
     # Open source file and the result file
     source_handle = open(path + '/' + source_filename, 'r')
     result_handle = open(path + '/' + result_filename, 'w')
-    #方法：用spilt()函数以'|'符号将每一行分成包含公司名称的列表
-    company = []#为存放股票公司全称所事先定义的空列表
 
+    #method：Use the spilt() function to split each line into a list of company names with the '|' symbol
+    company = []#An empty list defined in advance to hold the full name of the stock company
     for line in source_handle:
-        line_list = line.split('|')#以'|'为分隔符，将每一行分成几个字符串组成的列表，其中第一个'|'和第二个'|'之间为公司名称
-        company.append(line_list[1])#line_list[0]是ticker,line_list[1]是公司名称所以将line_list[1]添加到company中
-    sorted_company = sorted(company)#对company排序
-#将排序好的公司名称列表sorted_company里的元素依次添加到result.txt文件中
-    for i in range(len(sorted_company)):
-        result_handle.write(sorted_company[i])
+        #With the '|' delimiter, divide each line into a list of several strings, with the company name between the first '|' and the second '|'
+        line_list = line.split('|')
+        #lLine_list [1] is the name of the company so line_list[1] is added to the company
+        company.append(line_list[1])
+    sorted_company = sorted(company)#The company in order
+#Add the elements from the sorted list of company names sorted_company to the result.txt file
+    for name in sorted_company:
+        result_handle.write(name)
 
-        result_handle.write('\n\r')#该行作用是为了每添加一个公司名称就换一行
+        result_handle.write('\n\r')#It is used to change a line for each company name added
 
 
 except IOError:
@@ -38,29 +40,34 @@ finally:
 # Read an image file
 path = os.path.dirname(os.path.abspath(__file__))
 filename = path + '/' + 'lenna.bmp'
-filename1 = path + '/' + 'lena10.jpg'#读取lena10.jpg图像，它的文件位置要和lenna.bmp在一起
-data = image.imread(filename)
-data1 = image.imread(filename1)
+filename1 = path + '/' + 'lena10.jpg'#read lena10.jpg，the location of it is the same with lenna.bmp
+lenna_bmp = image.imread(filename)
+lenna_jpg = image.imread(filename1)
 
 # Add some color boundaries to modify an image array
-plot_data = data.copy()
-plot_data1 = data1.copy()
-plot_data2 = data.copy()#为了求差值图所事先定义的图像
-#为计算平均差值所事先定义的分别三个通道的差值总和
+plot_data = lenna_bmp.copy()
+plot_data1 = lenna_jpg.copy()
+
+#An image defined in advance in order to evaluate the difference graph
+plot_data2 = lenna_bmp.copy()
+print(plot_data2)
+
+
+#The sum of the differences of the three channels defined in advance to calculate the average difference
 r_sum = 0
 g_sum = 0
 b_sum = 0
 for width in range(512):
     for height in range(512):
-        plot_data2[height][width] = abs(plot_data[height][width] -plot_data1[height][width] )#计算差值图
-        r_sum += plot_data2[height][width][0]#R通道的差值总和
-        g_sum += plot_data2[height][width][1]#G通道的差值总和
-        b_sum += plot_data2[height][width][2]#B通道的差值总和
-r_average = r_sum / (512* 512)#R通道的差值平均
-g_average = g_sum / (512* 512)#G通道的差值平均
-b_average = b_sum / (512* 512)#B通道的差值平均
+        plot_data2[height][width] = abs(plot_data[height][width] -plot_data1[height][width] )#Calculate the difference graph
+        r_sum += plot_data2[height][width][0]#Sum of the differences of R channels
+        g_sum += plot_data2[height][width][1]#Sum of the differences of G channels
+        b_sum += plot_data2[height][width][2]#Sum of the differences of B channels
+r_average = r_sum / (512* 512)#The average difference of R channels
+g_average = g_sum / (512* 512)#The average difference of G channels
+b_average = b_sum / (512* 512)#The average difference of B channels
 
-# use pyplot to plot the image，显示差值图
+# use pyplot to plot the image，display difference graph
 pyplot.imshow(plot_data2)
 pyplot.show()
 
