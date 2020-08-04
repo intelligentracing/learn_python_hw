@@ -38,7 +38,7 @@ class Rectangle(Shape):
     def __init__(self,width,length):
         self.width = width
         self.length = length
-       # self.get_area()
+        self.get_area()
         self.__class__.initiated = True
 
     def get_area(self):
