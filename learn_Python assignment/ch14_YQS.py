@@ -15,14 +15,18 @@ try:
     result_handle = open(path + '/' + result_filename, 'w')
 
     #method：Use the spilt() function to split each line into a list of company names with the '|' symbol
-    company = []#An empty list defined in advance to hold the full name of the stock company
+    #An empty list defined in advance to hold the full name of the stock company
+    company = []
+
     for line in source_handle:
         #With the '|' delimiter, divide each line into a list of several strings, with the company name between the first '|' and the second '|'
-        line_list = line.split('|')
         #lLine_list [1] is the name of the company so line_list[1] is added to the company
+        line_list = line.split('|')
+        print(line_list)
         company.append(line_list[1])
     sorted_company = sorted(company)#The company in order
-#Add the elements from the sorted list of company names sorted_company to the result.txt file
+
+    #Add the elements from the sorted list of company names sorted_company to the result.txt file
     for name in sorted_company:
         result_handle.write(name)
 
