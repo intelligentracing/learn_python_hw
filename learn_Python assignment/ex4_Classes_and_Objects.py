@@ -11,7 +11,7 @@ class Vehicle:
                 self.type = 'sedan'
     
     def __str__(self):
-        return self.brand + ' ' + self.model + ' ' + self.type
+        return 'the brand is {},the model is {},the type of car is {}'.format(self.brand, self.model, self.type)
 
     def check_fuel_level(self,fuel_level):
         self.fuel_level = fuel_level
@@ -31,6 +31,8 @@ class ElectricVehicle(Vehicle):
         super().__init__(brand,model,type)
         if  0 <= charge_level <= 1:
             self.charge_level = charge_level
+        else:
+            print('the charge level should be smaller than 1!')
 
     def check_fuel_level(self,fuel_level):
         print('check_fuel_level is unavilable')
@@ -44,9 +46,13 @@ class ElectricVehicle(Vehicle):
 
     def set_charge_level(self):
         self.charge_level = input('charge_level by percentage:')
-        return 'the charge level has been update:{}'.format(self.charge_level)
+        return 'the charge level has been update:{}%'.format(self.charge_level)
 
-########################### test ElectricVehicle class #####################################
+########################### test Vehicle & ElectricVehicle class #####################################
+M4 = Vehicle('BMV','M4','van')
+print(M4.check_fuel_level(0.5))
+print(M4.set_fuel_level(1))
+
 car = ElectricVehicle('Porsche','cayenne','SUV',0.1)
 print(car)
 car.check_fuel_level(0.5)
