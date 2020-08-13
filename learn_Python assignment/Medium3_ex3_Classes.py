@@ -16,23 +16,23 @@ class Finance:
 
     def price_average(self):
         average_dictionary = dict()
-        for data in self.price_history:
-            average_value = (float(self.price_history[data][1]) + float(self.price_history[data][2]) )/ 2
-            average_dictionary[data] = average_value
+        for date in self.price_history:
+            average_value = (float(self.price_history[date][1]) + float(self.price_history[date][2]) )/ 2
+            average_dictionary[date] = average_value
 
         return average_dictionary
 
     def price_search(self, low, high):
         result_list = []
-        for data in self.price_history:
-            real_high = float(self.price_history[data][2])
-            real_low = float(self.price_history[data][3])
+        for date in self.price_history:
+            real_high = float(self.price_history[date][2])
+            real_low = float(self.price_history[date][3])
             if real_high < high and real_low > low:
-                result_list.append(data)
+                result_list.append(date)
 
         return result_list
 #######################Finance class test #######################################
 aapl = Finance('AAPL.csv')
-print(aapl)
+print(aapl.price_history)
 #print(aapl.price_average())
 print(aapl.price_search(103, 199))
