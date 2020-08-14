@@ -25,8 +25,8 @@ class Finance:
     def price_search(self, low, high):
         result_list = []
         for date in self.price_history:
-            real_high = float(self.price_history[date][2])
-            real_low = float(self.price_history[date][3])
+            real_high = float(self.price_history[date][1])
+            real_low = float(self.price_history[date][2])
             if real_high < high and real_low > low:
                 result_list.append(date)
 
