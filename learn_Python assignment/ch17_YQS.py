@@ -30,7 +30,7 @@ ax.spines['left'].set_position(('data', 0))
 ax.spines['bottom'].set_position(('data', 0))
 ax.spines['top'].set_color('none')
 ax.spines['right'].set_color('none')
-#（1）Set A = 4, B = 2, print the model of the ellipse in the 2d diagram, and mark it as gray color.
+#（1）Set a = 4, b = 2, print the model of the ellipse in the 2d diagram, and mark it as gray color.
 a = 4
 b = 2
 #A polar expression for an elliptic equation
@@ -44,13 +44,13 @@ cursor = Cursor(ax, horizOn=True, vertOn=True, color='g', linewidth=2.0)#画十�
 ob_count = 0
 x_sample = []#In order to place the points that we drew near the ellipse
 y_sample = []
-x1 = np.arange(-5, 5, 0.1)
+
 
 def onclick(event):
     global ob_count
 
-    if ob_count == 10:
-        quit()
+    # if ob_count == 10:
+    #     quit()
     #(2)append Cursor widget，The user clicks 10 points around the ellipse, which can be noisy, that is,
     # may be off the ellipse line
     [x, y] = [event.xdata, event.ydata]
