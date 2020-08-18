@@ -21,17 +21,18 @@
 #ex1.2
 list_1 = ['a','b','c', 4]
 list_2 = ['d','e','f']
-# list_1_1 = list_1[:]
-# list_1.append(list_2)
-# print(list_1)
-# print(len(list_1))
-# list_1_1.extend(list_2)
-# print(list_1_1)
-# print(len(list_1_1))
+list_1copy = list_1.copy()
+list_1_1 = list_1[:]
+list_1.append(list_2)
+print(list_1)
+print(len(list_1))
+list_1_1.extend(list_2)
+print(list_1_1)
+print(len(list_1_1))
 
 list_3 = []
-for i in list_1:
+for i in list_1copy:
     list_3 += str(i)
 print(list_3)
-result = ' '.join(list_3)
+result = ''.join(list_3)
 print(result)
