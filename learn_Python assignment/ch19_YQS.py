@@ -36,7 +36,7 @@ x_train, x_test,l_train, l_test = train_test_split(X, l, test_size=0.5)
 
 #Train on the training set
 #The sample point of the unknown classification belongs to the category of the point closest to the unknown classification sample point
-knn = KNeighborsClassifier(n_neighbors = 1)
+knn = KNeighborsClassifier(n_neighbors = 2 )
 knn.fit(x_train,l_train)
 
 # classify
