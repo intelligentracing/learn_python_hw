@@ -26,7 +26,7 @@ fig, ax = plt.subplots()
 
 while True:
     plt.imshow(background)
-    plt.axis('off')#不显示横纵坐标
+    plt.axis('off')#Horizontal and vertical coordinates are not displayed
     # First retrieve the time
     now_time = datetime.now()
     hour = now_time.hour + now_time.minute / 60 + now_time.second /3600 #把当前的分钟和秒钟也变换为小时，换算成时针需要转的角度
@@ -42,7 +42,7 @@ while True:
     second_vector = clock_hand_vector(second/60*2*np.pi, second_hand_length)
     GMT_vector = clock_hand_vector(GMT_time/24 *2*np.pi, GMT_hand_length)
 
-    plt.arrow(center[0], center[1], hour_vector[0], hour_vector[1], head_length = 3, linewidth = hour_hand_width, color = 'black')
+    plt.arrow(center[0], center[1], hour_vector[0], hour_vector[1], head_length = 3, linewidth = hour_hand_width, color = 'green')
     plt.arrow(center[0], center[1], minute_vector[0], minute_vector[1], linewidth = minute_hand_width, color = 'black')
     plt.arrow(center[0], center[1], second_vector[0], second_vector[1], linewidth = second_hand_width, color = 'red')
     plt.arrow(center[0], center[1],GMT_vector[0], GMT_vector[1], linewidth = GMT_hand_width, color = 'yellow')
