@@ -30,7 +30,7 @@ def proability(x, y):
         y_sample_1.append(round(y, 1))
     plt.plot(x_sample_1, y_sample_1, 'bD')
 
-x_rr,y_rr = np.meshgrid(np.arange(-5,5,1),np.arange(-5,5,1))
+x_rr,y_rr = np.meshgrid(np.arange(-5,5,0.1),np.arange(-5,5,0.1))
 
 for i in range(len(x_rr[0])):
     for j in range(len(y_rr[0])):
