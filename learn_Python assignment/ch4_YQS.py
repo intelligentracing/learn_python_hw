@@ -1,24 +1,24 @@
-#ex1.1(1)
-# L1 = [['a', 'b'], 2, ['a','b']]
-# L = ['a', 'b']
-# L2 = [L, 2, L]
+ex1.1(1)
+L1 = [['a', 'b'], 2, ['a','b']]
+L = ['a', 'b']
+L2 = [L, 2, L]
 
-# print('L1[0]: ', L1[0])
-# print('L1[2]: ', L1[2])
+print('L1[0]: ', L1[0])
+print('L1[2]: ', L1[2])
 
-# print('L2[0]: ', L2[0])
-# print('L2[2]: ', L2[2])
-# # #ex1.1(2)
-# print(id(L))
-# L1[0][0] = 'c'
-# L2[0][0] = 'c'
+print('L2[0]: ', L2[0])
+print('L2[2]: ', L2[2])
+# #ex1.1(2)
+print(id(L))
+L1[0][0] = 'c'
+L2[0][0] = 'c'
 
-# print('L1: ', L1)
-# print('L2: ', L2)
-# print('L:', L)
-# print(id(L))
+print('L1: ', L1)
+print('L2: ', L2)
+print('L:', L)
+print(id(L))
 
-#ex1.2
+ex1.2
 list_1 = ['a','b','c', 4]
 list_2 = ['d','e','f']
 list_1copy = list_1.copy()
@@ -34,5 +34,5 @@ list_3 = []
 for i in list_1copy:
     list_3 += str(i)
 print(list_3)
-result = ''.join(list_3)
+result = ' '.join(list_3)
 print(result)
