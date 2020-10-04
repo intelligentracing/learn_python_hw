@@ -1,3 +1,5 @@
+#Midium1 ex4_List.py
+#Author: Yu Qiuhsuang
 
 element = input('please input the number for the list:')
 shift = input('please input shift steps:')
@@ -12,7 +14,8 @@ result_list_copy = result_list.copy()
 for s in range(n):
     if s + shift < 0:
         result_list_copy[n + s + shift] = result_list[s]
-    if s + shift >= 0:
+    if n > s + shift >= 0:
         result_list_copy[s + shift] = result_list[s]
-
+    if s + shift >= n:
+        result_list_copy[s + shift - n] = result_list[s]
 print(result_list_copy)
