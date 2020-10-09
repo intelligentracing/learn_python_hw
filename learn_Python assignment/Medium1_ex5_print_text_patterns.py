@@ -1,6 +1,9 @@
+#Midium1 ex5_print_text_patterns.py
+#Author: Yu Qiuhsuang
+
 times = input('please input times range from 0 to 10:')
 times = int(times)
-for i in range(-10,11):
+for i in range(0,21):
     print('*', end ='')
 print()
 #整个沙漏从上向下一行一行打印，从-10，打印到10，从上向下每一行依次是-10， -9， -8，......
