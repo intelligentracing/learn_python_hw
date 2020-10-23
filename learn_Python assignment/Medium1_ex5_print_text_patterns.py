@@ -24,6 +24,6 @@ for i in range(-10, 11):
             print(a, end ='')
     print()
 
-for i in range(-10,11):
+for i in range(0, 21):
     print('*', end ='')
 print()
