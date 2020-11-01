@@ -1,38 +1,38 @@
 from collections import deque
 
 #ex1.1
-def find_flag(opt_queue,num):
-    """找到num在已经排好序的opt_queue里应该放在什么位置，即flag"""
-    flag = 0
-    for i in range(len(opt_queue)):
-        com = opt_queue.pop()
-        if com > num:
-            flag = i+1 #flag代表比几个数小 有flag数比较大
-        opt_queue.append(com)
-    return flag
+# def find_flag(opt_queue,num):
+#     """找到num在已经排好序的opt_queue里应该放在什么位置，即flag"""
+#     flag = 0
+#     for i in range(len(opt_queue)):
+#         com = opt_queue.pop()
+#         if com > num:
+#             flag = i+1 #flag代表比几个数小 有flag数比较大
+#         opt_queue.append(com)
+#     return flag
 
-def insert(opt_queue,flag,num):
-    """把num插入opt_queue中"""
-    new_queue=deque()
-    for i in range(flag):
-        new_queue.append(opt_queue.pop())
-    opt_queue.append(num)
-    for i in range(flag):
-        opt_queue.append(new_queue.pop())
-    return opt_queue
+# def insert(opt_queue,flag,num):
+#     """把num插入opt_queue中"""
+#     new_queue=deque()
+#     for i in range(flag):
+#         new_queue.append(opt_queue.pop())
+#     opt_queue.append(num)
+#     for i in range(flag):
+#         opt_queue.append(new_queue.pop())
+#     return opt_queue
 
-def sort_function(queue):
-    """循环以上操作将未排序的queue中的每一个元素插入到在opt_queue这个已经排好序的列表中"""
-    opt_queue = deque()
+# def sort_function(queue):
+#     """循环以上操作将未排序的queue中的每一个元素插入到在opt_queue这个已经排好序的列表中"""
+#     opt_queue = deque()
 
-    for i in range(len(queue)):
-        num = queue.popleft()
-        flag = find_flag(opt_queue,num)
-        opt_queue = insert(opt_queue, flag, num)
-    return opt_queue
+#     for i in range(len(queue)):
+#         num = queue.popleft()
+#         flag = find_flag(opt_queue,num)
+#         opt_queue = insert(opt_queue, flag, num)
+#     return opt_queue
 
-queue_1 = deque([2,10,1])
-print(sort_function(queue_1))
+# queue_1 = deque([2,10,1])
+# print(sort_function(queue_1))
 
 #ex1.2
 # def find_min_index(queue, remain):
@@ -75,3 +75,122 @@ print(sort_function(queue_1))
 
 # sort_deque(input_deque)
 
+## This is course material for Introduction to Python Scientific Programming
+## Class 8 Example code: knight_path_BFS.py
+## Author: Allen Y. Yang,  Intelligent Racing Inc.
+##
+## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
+
+from collections import deque
+
+def BFS(board_size, start, goal, legit_moves):
+    ''' BFS search a viable path from start position to goal position on the board_size
+    Parameters:
+    Input:  board_size  - The dimension of the board
+            start       - start position of the piece
+            goal        - final destination
+            legit_moves - describe how the piece can move on the board
+    
+    Output: result_path - return a BFS path that reaches the goal, otherwise []
+    '''
+    # Input sanity check
+    if len(board_size)!=2 or type(board_size[0])!=int or type(board_size[1])!=int:
+        raise TypeError('Board size is not a compatible type')
+    elif board_size[0]<=0 or board_size[1]<=0:
+        raise ValueError('Board size value is not supported')
+
+    if len(start)!=2 or type(start[0])!=int or type(start[1])!=int:
+        raise TypeError('Start position is not a compatible type')
+    elif start[0]<0 or start[1]<0 or start[0]>=board_size[0] or start[1]>=board_size[1]:
+        raise ValueError('Start position value is not supported')
+
+    if len(goal)!=2 or type(goal[0])!=int or type(goal[1])!=int:
+        raise TypeError('Goal position is not a compatible type')
+    elif goal[0]<0 or goal[1]<0 or goal[0]>=board_size[0] or goal[1]>=board_size[1]:
+        raise ValueError('Start position value is not supported')
+
+    # Initialization
+    search_queue = deque()    # this is a queue to manage the order of the BFS
+    search_queue.append(start)
+
+    # move_parent records the parent notes of the searched moves on the board
+    move_parent  = [[[None,None] for i in range(board_size[1])] for j in range(board_size[0])]
+    move_parent[start[0]][start[1]] = [-1, -1]     # First root location is assigned a special value of (-1, -1)
+    is_goal = False
+    while len(search_queue)>0 and not is_goal:
+        
+        # Retrieve the current FIFO position
+        current_move = search_queue.popleft()
+
+        # Generate all legit moves
+        for i in legit_moves:
+            
+            # Generate a potential move
+            move_position = [ current_move[0] + i[0],current_move[1] + i[1]]
+
+            # This move may be out of bound or have been visited
+            if move_position[0]<0 or move_position[1]<0 or move_position[0]>=board_size[0] \
+                or move_position[1]>=board_size[1]:
+                continue
+            elif move_parent[move_position[0]][move_position[1]]!=[None, None]:
+                continue
+
+            # This is a valid position
+            search_queue.append(move_position)
+            move_parent[move_position[0]][move_position[1]] = current_move
+
+            # Check if the new position is the goal
+            if move_position[0] == goal[0] and move_position[1] == goal[1]:
+                is_goal = True
+                break
+        
+    path_queue = deque()
+    if is_goal:
+        # Assign the found path and quit
+        while is_goal:
+            path_queue.appendleft(move_position)
+            move_position = move_parent[move_position[0]][move_position[1]]
+            if move_position[0]==-1:
+                is_goal = False
+            
+    return path_queue
+
+
+# Assign chess board size. Here half a standard board is used
+board_size = [4,8]
+
+# Assign constant tuples for allowed knight's eight moves
+bishop_moves = [[1,0], [1,1], [0,1],[-1,1], [-1,0], [-1,-1], [0,-1], [1,-1]]
+
+# Assign knight's initial position
+bishop_start = [0,0]
+
+# Create a display of the board game problem
+print('Game has started, here is the board with the initial position at 0')
+board_display = [[' * ' for i in range(board_size[1])] for j in range(board_size[0])]
+board_display[bishop_start[0]][bishop_start[1]] = ' S '
+for i in range(board_size[0]):
+    display_string = ''.join(board_display[i])
+    print(display_string)
+
+# Acquire user input about the goal position
+user_input = input('Please input goal position (x, y): ')
+bishop_goal = list(eval(user_input))
+
+print('Moving Knight from {0} to {1}:'.format(bishop_start, bishop_goal))
+board_display[bishop_goal[0]][bishop_goal[1]]  = ' G '
+
+bishop_path = BFS(board_size, bishop_start, bishop_goal, bishop_moves)
+
+print(bishop_path)
+if len(bishop_path)>0:
+    start = bishop_path.popleft()
+    bishop_path.append(start)
+    for i in range(1,len(bishop_path)-1):
+        current_move = bishop_path.popleft()
+        board_display[current_move[0]][current_move[1]]  = ' o '
+        bishop_path.append(current_move)
+        
+for i in range(board_size[0]):
+    display_string = ''.join(board_display[i])
+    print(display_string)
