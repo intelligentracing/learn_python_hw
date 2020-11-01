@@ -1,4 +1,4 @@
-ex1.1(1)
+#ex1.1(1)
 L1 = [['a', 'b'], 2, ['a','b']]
 L = ['a', 'b']
 L2 = [L, 2, L]
@@ -18,7 +18,7 @@ print('L2: ', L2)
 print('L:', L)
 print(id(L))
 
-ex1.2
+#ex1.2
 list_1 = ['a','b','c', 4]
 list_2 = ['d','e','f']
 list_1copy = list_1.copy()
