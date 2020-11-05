@@ -127,21 +127,21 @@ def DFS(board_size, start, goal, legit_moves):
 
     Output: result_path - return a DFS path that reaches the goal, otherwise []
     '''
-    # Input sanity check
-    # if len(board_size) != 2 or type(board_size[0]) != int or type(board_size[1]) != int:
-    #     raise TypeError('Board size is not a compatible type')
-    # elif board_size[0] <= 0 or board_size[1] <= 0:
-    #     raise ValueError('Board size value is not supported')
-    #
-    # if len(start) != 2 or type(start[0]) != int or type(start[1]) != int:
-    #     raise TypeError('Start position is not a compatible type')
-    # elif start[0] < 0 or start[1] < 0 or start[0] >= board_size[0] or start[1] >= board_size[1]:
-    #     raise ValueError('Start position value is not supported')
-    #
-    # if len(goal) != 2 or type(goal[0]) != int or type(goal[1]) != int:
-    #     raise TypeError('Goal position is not a compatible type')
-    # elif goal[0] < 0 or goal[1] < 0 or goal[0] >= board_size[0] or goal[1] >= board_size[1]:
-    #     raise ValueError('Start position value is not supported')
+    Input sanity check
+    if len(board_size) != 2 or type(board_size[0]) != int or type(board_size[1]) != int:
+        raise TypeError('Board size is not a compatible type')
+    elif board_size[0] <= 0 or board_size[1] <= 0:
+        raise ValueError('Board size value is not supported')
+    
+    if len(start) != 2 or type(start[0]) != int or type(start[1]) != int:
+        raise TypeError('Start position is not a compatible type')
+    elif start[0] < 0 or start[1] < 0 or start[0] >= board_size[0] or start[1] >= board_size[1]:
+        raise ValueError('Start position value is not supported')
+    
+    if len(goal) != 2 or type(goal[0]) != int or type(goal[1]) != int:
+        raise TypeError('Goal position is not a compatible type')
+    elif goal[0] < 0 or goal[1] < 0 or goal[0] >= board_size[0] or goal[1] >= board_size[1]:
+        raise ValueError('Start position value is not supported')
 
     # Initialization
     search_stack = deque()  # this is a queue to manage the order of the DFS
