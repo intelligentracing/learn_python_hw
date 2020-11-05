@@ -178,7 +178,7 @@ user_input = input('Please input goal position (x, y): ')
 bishop_goal = list(eval(user_input))
 
 print('Moving Knight from {0} to {1}:'.format(bishop_start, bishop_goal))
-board_display[bishop_goal[0]][bishop_goal[1]]  = ' G '
+board_display[bishop_goal[0]][bishop_goal[1]]3  = ' G '
 
 bishop_path = BFS(board_size, bishop_start, bishop_goal, bishop_moves)
 
