@@ -30,9 +30,10 @@ list_1_1.extend(list_2)
 print(list_1_1)
 print(len(list_1_1))
 
-list_3 = []
-for i in list_1copy:
-    list_3 += str(i)
+list_3 = [20,213]
+for i in list_3:
+    for s in range(0,len(list_3)):
+    list_3[s] = str(i)
 print(list_3)
 result = ' '.join(list_3)
 print(result)
