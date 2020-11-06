@@ -17,7 +17,7 @@ test = [s.lower() for s in test if isinstance(s,str)==True]
 all = [x for x in orign if x in test]
 result = [y for y in test if y not in all]
 
-if len(result) == 0:
+if len(result) == 0 and len(orign) == len(test):
     is_anagram = True
 else:
     is_anagram = False
