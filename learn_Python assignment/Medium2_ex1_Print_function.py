@@ -1,24 +1,7 @@
 #Midium2 ex1_print_function.py
 #Author: Yu Qiuhsuang
 
-# def pascal_triangle(x,y):
-#     '''x:第几行
-#        y:第几个数
-#        '''
-#     if x == 1 and y == 1:
-#         return 1
-#     elif x < 1 or y < 1:
-#         return 0
-#     else:
-#         return pascal_triangle(x - 1, y - 1) + pascal_triangle(x - 1, y)
-# N = 11
-# for x in range(1, N + 1):
-#     for y in range(1, N - x + 1):
-#         print("", end=' ')
-#     for z in range(1, x + 1):
-#         print(pascal_triangle(x, z),end=" ")
-#     print()
-
+#get each line values for the triangle and save them in the triangle list
 def triangle(num):
     triangle=[[1]]
     for i in range(2,num+1):
@@ -45,7 +28,7 @@ if __name__=='__main__':
     num=int(input('num:'))
     triangle=triangle(num)
     # width is the interval between two elements, and the interval is dynamic adjust
-    # according to the middle element's digits
+    # according to the middle element's digits, and the last number you add is free by yourself
     print(str(triangle[-1][len(triangle[-1])//2]))
-    width=len(str(triangle[-1][len(triangle[-1])//2]))+1
+    width=len(str(triangle[-1][len(triangle[-1])//2]))+3
     printtriangle(triangle,width)
