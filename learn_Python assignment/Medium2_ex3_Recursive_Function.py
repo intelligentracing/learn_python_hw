@@ -1,3 +1,6 @@
+#Midium2 ex3_Recursive_Function.py
+#Author: Yu Qiuhsuang
+
 from collections import deque
 
 def recursive_function(input_deque, reverse = False):
