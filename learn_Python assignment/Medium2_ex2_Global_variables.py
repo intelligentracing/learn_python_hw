@@ -1,3 +1,5 @@
+#Midium2 ex2_Global_variables.py
+#Author: Yu Qiuhsuang
 from queue import deque
 encryption = 2
 
