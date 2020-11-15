@@ -1,21 +1,24 @@
 #Midium1 ex4_List.py
 #Author: Yu Qiuhsuang
-
+from queue import deque
 #input interface
-element = input('please input the number for the list:')
+element = input('please input the number for the list(eg:12345,without any sign between the numbers):')
 shift = input('please input shift steps:')
 shift = int(shift)
 test_list = list(element)
 
-#define a list to save the 
+#result_list is use to save the result that covert from the type of element in test_list 
 result_list = []
 for i in test_list:
     result_list.append(int(i))
 
-print(result_list)
-print(test_list)
+# len()use to get the length of the input list
 n = len(result_list)
+
+# avoid repeat 
 shift = shift % n
+
+#result_list_copy is use to save the shifted results
 result_list_copy = result_list.copy()
 for s in range(n):
     if s + shift < n:
