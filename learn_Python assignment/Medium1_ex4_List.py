@@ -21,8 +21,5 @@ shift = shift % n
 #result_list_copy is use to save the shifted results
 result_list_copy = result_list.copy()
 for s in range(n):
-    if s + shift < n:
-        result_list_copy[s + shift] = result_list[s]
-    if s + shift >= n:
-        result_list_copy[s + shift - n] = result_list[s]
+    result_list_copy[s + shift] = result_list[s]
 print(result_list_copy)
