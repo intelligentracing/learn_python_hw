@@ -1,5 +1,8 @@
+#Midium2 ex4_Search.py
+#Author: Yu Qiuhsuang
 import math
 
+#display all the chessboard and initialize the computer legit moves
 # Assign chess board size. Here half a standard board is used
 board_size = [4, 8]
 
@@ -45,25 +48,29 @@ def DFS(board_size, start, start1, legit_moves):
 
     # Initialization
     distance_start = math.sqrt((start[0] - start1[0]) ** 2 + (start[1] - start1[1]) ** 2)
-    search_stack = [(distance_start, start, start1)]  # 将search_stack修改为[(m,(x,y))]的列表形式，start是坐标
+    search_stack = [(distance_start, start, start1)]  # 将search_stack修改为[(m,(x,y))]的列表形式，start是玩家坐标，start1是电脑坐标
 
     is_goal = False
     current_move = [distance_start,(0,0),(3,7)]
     while len(search_stack) > 0 and not is_goal:
+
+        #user input the next step
         user_input = input("Please input King's next step(x,y): ")
+        #eval()convert the argument into int type
         move_position_king = list(eval(user_input))
 
         # Input sanity check
+        #judge whether king out of boundard and it is ordered the principle of king
         if move_position_king[0] < 0 or move_position_king[1] < 0 or\
            move_position_king[0] >= board_size[0] or move_position_king[1] >= board_size[1] or \
            abs(move_position_king[0] - current_move[1][0])> 1 or abs(move_position_king[1] - current_move[1][1]) > 1:
            raise ValueError
 
-        # Generate all legit moves
+        # Generate all legit moves for knight
         for i in legit_moves:
 
             # Generate a potential move
-            move_position_knight = [current_move[2][0] + i[0], current_move[2][1] + i[1]]  # 所以current_move[1][0]才等于(m,(x,y)中的x
+            move_position_knight = [current_move[2][0] + i[0], current_move[2][1] + i[1]] 
 
             # This move may be out of bound
             if move_position_knight[0] < 0 or move_position_knight[1] < 0 \
