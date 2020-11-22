@@ -4,16 +4,16 @@
 from collections import deque
 
 def dequeue(input_deque, reverse = False):
-
+    #input sanity check
     if type(input_deque) != deque or type(reverse) != bool:
         raise TypeError('Input arguments are not allowed.')
     
-    middle_queue = deque()
     if len(input_deque) == 1:
         result = input_deque.pop()
-        return result
+        print(result)
+        return 
 
-    middle_queue.append(input_deque.pop())
+    input_deque.pop()
     dequeue(input_deque)
 
 
