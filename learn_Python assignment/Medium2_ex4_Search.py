@@ -15,13 +15,13 @@ king_start = [0,0]
 # Create a display of the board game problem
 print('Game has started, here is the board with the initial position at 0')
 board_display = [[' * ' for i in range(board_size[1])] for j in range(board_size[0])]
-board_display[king_start[0]][king_start[1]] = ' S '
-board_display[knight_start[0]][knight_start[1]] = ' G '
+board_display[king_start[0]][king_start[1]] = ' H '
+board_display[knight_start[0]][knight_start[1]] = ' C '
 for i in range(board_size[0]):
     display_string = ''.join(board_display[i])
     print(display_string)  
 
-def DFS(board_size, start, start1, legit_moves):
+def chess_game(board_size, king, knight, legit_moves):
     ''' DFS search a viable path from start position to goal position on the board_size
     Parameters:
     Input:  board_size  - The dimension of the board
@@ -36,19 +36,19 @@ def DFS(board_size, start, start1, legit_moves):
     elif board_size[0] <= 0 or board_size[1] <= 0:
         raise ValueError('Board size value is not supported')
 
-    if len(start) != 2 or type(start[0]) != int or type(start[1]) != int:
+    if len(king) != 2 or type(king[0]) != int or type(king[1]) != int:
         raise TypeError('Start position is not a compatible type')
-    elif start[0] < 0 or start[1] < 0 or start[0] >= board_size[0] or start[1] >= board_size[1]:
+    elif king[0] < 0 or king[1] < 0 or king[0] >= board_size[0] or king[1] >= board_size[1]:
         raise ValueError('Start position value is not supported')
 
-    if len(start1) != 2 or type(start1[0]) != int or type(start1[1]) != int:
+    if len(knight) != 2 or type(knight[0]) != int or type(knight[1]) != int:
         raise TypeError('Goal position is not a compatible type')
-    elif start1[0] < 0 or start1[1] < 0 or start1[0] >= board_size[0] or start1[1] >= board_size[1]:
+    elif knight[0] < 0 or knight[1] < 0 or knight[0] >= board_size[0] or knight[1] >= board_size[1]:
         raise ValueError('Start position value is not supported')
 
     # Initialization
-    distance_start = math.sqrt((start[0] - start1[0]) ** 2 + (start[1] - start1[1]) ** 2)
-    search_stack = [(distance_start, start, start1)]  # 将search_stack修改为[(m,(x,y))]的列表形式，start是玩家坐标，start1是电脑坐标
+    distance_start = math.sqrt((king[0] - knight[0]) ** 2 + (king[1] - knight[1]) ** 2)
+    search_stack = [(distance_start, king, knight)]  # 将search_stack修改为[(m,(x,y))]的列表形式，start是玩家坐标，start1是电脑坐标
 
     is_goal = False
     current_move = [distance_start,(0,0),(3,7)]
@@ -60,7 +60,7 @@ def DFS(board_size, start, start1, legit_moves):
         move_position_king = list(eval(user_input))
 
         # Input sanity check
-        #judge whether king out of boundard and it is ordered the principle of king
+        #judge whether king out of boundard or it is ordered the principle of king
         if move_position_king[0] < 0 or move_position_king[1] < 0 or\
            move_position_king[0] >= board_size[0] or move_position_king[1] >= board_size[1] or \
            abs(move_position_king[0] - current_move[1][0])> 1 or abs(move_position_king[1] - current_move[1][1]) > 1:
@@ -76,6 +76,7 @@ def DFS(board_size, start, start1, legit_moves):
             if move_position_knight[0] < 0 or move_position_knight[1] < 0 \
                or move_position_knight[0] >= board_size[0] or move_position_knight[1] >= board_size[1]:
                 continue
+            #check whether they close to each other or move
             elif (move_position_king[0] == move_position_knight[0] and abs(move_position_king[1] -move_position_knight[1]) == 1) or \
                  (move_position_king[1] == move_position_knight[1] and abs(move_position_king[0]- move_position_knight[0]) == 1)or \
                  (abs(move_position_king[0]- move_position_knight[0]) == 1 and abs(move_position_king[1]- move_position_knight[1]) == 1):
@@ -96,7 +97,7 @@ def DFS(board_size, start, start1, legit_moves):
             search_stack.append((distance_move, move_position_king, move_position_knight))
         search_stack.sort(reverse=True)
         current_move = search_stack.pop()
-        search_stack = [(distance_start, start, start1)]
+        search_stack = [(distance_start, king, knight)]
         board_display[move_position_king[0]][move_position_king[1]] = ' + '
         board_display[current_move[2][0]][current_move[2][1]] = ' o '
         for i in range(board_size[0]):
@@ -104,4 +105,4 @@ def DFS(board_size, start, start1, legit_moves):
             print(display_string)
         board_display[move_position_king[0]][move_position_king[1]] = ' * '
         board_display[current_move[2][0]][current_move[2][1]] = ' * '
-DFS(board_size, king_start,knight_start, knight_moves)
+chess_game(board_size, king_start,knight_start, knight_moves)
