@@ -8,9 +8,8 @@ def histogram_text_words(text):
         text:A string of words
         output：A dictionary of words corresponding to their frequency
     """
-
-    histogram = dict()
-    words = text.split()
+    histogram = {'sam': ['Li']}
+    words = text.split(" ")
     for c in words:
         if c.isalpha():#Checks if the string consists of only letters
             c = c.lower()
@@ -26,6 +25,7 @@ def histogram_text_words(text):
             else:
                 histogram[real_word] = 1
     return histogram
+
 dicts = histogram_text_words(text)
 for key in dicts:
     print(key,dicts[key],end=' ')
