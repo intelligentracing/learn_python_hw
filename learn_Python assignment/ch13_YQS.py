@@ -3,7 +3,7 @@
 class Vehicle:
     '''A class to show different kinds of vehicle.'''
     type = {'sedan','convertible','SUV','truck','coupe','van'}
-
+    fuel_level = 0.5
     def __init__(self, brand, model, type):
             self.brand = brand
             self.model = model
@@ -15,9 +15,8 @@ class Vehicle:
     def __str__(self):
         return 'the brand is {},the model is {},the type of car is {}'.format(self.brand, self.model, self.type)
 
-    def check_fuel_level(self,fuel_level):
-        self.fuel_level = fuel_level
-        return self.fuel_level
+    def check_fuel_level(self):
+        print(self.fuel_level) 
 
     def set_fuel_level(self,fuel_level):
         if  0 <= fuel_level <= 1:
@@ -29,7 +28,7 @@ class Vehicle:
 
 
 #######################Vehicle calss test start#####################################
-# volvo = vehicle('volvo', 'polestar 2', 'sedan')
+# volvo = Vehicle('volvo', 'polestar 2', 'sedan')
 # volvo.set_fuel_level(0.9)
 # volvo.check_fuel_level()
 # #######################Vehicle class test end#######################################
@@ -45,19 +44,8 @@ class Basketball:
         self.schedule = []
 
     def __str__(self):
-        return self.team_name
-
-    def get_team_name(self):
-        return self.team_name
-
-    def get_team_address(self):
-        return self.team_address
-
-    def get_team_coach(self):
-        return self.team_coach
-
-    def get_team_number(self):
-        return self.team_number
+        return 'the team_name is {},the team_address is {},the team_coach  is {},the team_number  is {},the team_player_list is {}'\
+            .format(self.team_name, self.team_address, self.team_coach, self.team_number,self.team_player_list)
 
     def set_team_name(self, s):
         self.team_name = s
@@ -107,68 +95,68 @@ print(league_list[0].get_schedule())
 
 
 
-class Shape:
-    ''' An example class that defines an empty abstract shape '''
-    initiated = False  # 记录shape是否已经被定义为某个形状
+# class Shape:
+#     ''' An example class that defines an empty abstract shape '''
+#     initiated = False  # 记录shape是否已经被定义为某个形状
 
-    def get_area(self):
-        ''' virtual method to calculate area of a shape'''
-        pass
+#     def get_area(self):
+#         ''' virtual method to calculate area of a shape'''
+#         pass
 
-    @classmethod
-    def is_init(cls):
-        ''' return True if a shape has been assigned to the class'''
-        return cls.initiated
+#     @classmethod
+#     def is_init(cls):
+#         ''' return True if a shape has been assigned to the class'''
+#         return cls.initiated
 
-#ex1.2
-class Square(Shape):
-    ''' A subclass of Shape, specifically for calculating square area'''
+# #ex1.2
+# class Square(Shape):
+#     ''' A subclass of Shape, specifically for calculating square area'''
 
-    def __init__(self, width):
-        self.width = width
-        self.get_area()
-        self.__class__.initiated = True
+#     def __init__(self, width):
+#         self.width = width
+#         self.get_area()
+#         self.__class__.initiated = True
 
-    def get_area(self):
-        ''' Area of a square is its width times width'''
-        self.area = self.width * self.width
-        return self.area
+#     def get_area(self):
+#         ''' Area of a square is its width times width'''
+#         self.area = self.width * self.width
+#         return self.area
 
-    def __add__(self, other):
-        if self.width == other.width:
-            rect = Rectangle(self.width, self.width * 2)
-            return rect
-        else:
-            return None
-#ex1.1
-class Rectangle(Shape):
-    ''' A subclass of Shape, specifically for calculating rectangle area'''
+#     def __add__(self, other):
+#         if self.width == other.width:
+#             rect = Rectangle(self.width, self.width * 2)
+#             return rect
+#         else:
+#             return None
+# #ex1.1
+# class Rectangle(Shape):
+#     ''' A subclass of Shape, specifically for calculating rectangle area'''
 
-    def __init__(self,width,length):
-        self.width = width
-        self.length = length
-        self.get_area()
-        self.__class__.initiated = True
+#     def __init__(self,width,length):
+#         self.width = width
+#         self.length = length
+#         self.get_area()
+#         self.__class__.initiated = True
 
-    def get_area(self):
-        ''' Area of a rectangle is its width times width'''
-        self.area = self.width * self.length
-        return self.area
-#######################Rectangle calss test start###################################
-# s = Rectangle(6,8)
+#     def get_area(self):
+#         ''' Area of a rectangle is its width times width'''
+#         self.area = self.width * self.length
+#         return self.area
+# #######################Rectangle calss test start###################################
+# # s = Rectangle(6,8)
 
-# print(s.is_init())
-# print(s.get_area())
-#######################Rectangle class test end######################################
+# # print(s.is_init())
+# # print(s.get_area())
+# #######################Rectangle class test end######################################
 
 
-#######################Square class test end######################################
-s1 = Square(8)
-s2 = Square(8)
+# #######################Square class test end######################################
+# s1 = Square(8)
+# s2 = Square(8)
 
-enroll = s1 + s2
-print(s1.get_area())
-print(enroll.get_area())
+# enroll = s1 + s2
+# print(s1.get_area())
+# print(enroll.get_area())
 #######################Square class test end######################################
 
 
