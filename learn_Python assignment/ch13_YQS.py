@@ -28,9 +28,10 @@ class Vehicle:
 
 
 #######################Vehicle calss test start#####################################
-# volvo = Vehicle('volvo', 'polestar 2', 'sedan')
-# volvo.set_fuel_level(0.9)
-# volvo.check_fuel_level()
+volvo = Vehicle('volvo', 'polestar 2', 'sedan')
+print(volvo)
+volvo.set_fuel_level(0.9)
+volvo.check_fuel_level()
 # #######################Vehicle class test end#######################################
 
 #ex1.2
@@ -91,96 +92,3 @@ print(league_list[0])
 league_list[0].generate_game(league_list[1:])
 print(league_list[0].get_schedule())
 #######################basketball calss test end#####################################
-
-
-
-
-# class Shape:
-#     ''' An example class that defines an empty abstract shape '''
-#     initiated = False  # 记录shape是否已经被定义为某个形状
-
-#     def get_area(self):
-#         ''' virtual method to calculate area of a shape'''
-#         pass
-
-#     @classmethod
-#     def is_init(cls):
-#         ''' return True if a shape has been assigned to the class'''
-#         return cls.initiated
-
-# #ex1.2
-# class Square(Shape):
-#     ''' A subclass of Shape, specifically for calculating square area'''
-
-#     def __init__(self, width):
-#         self.width = width
-#         self.get_area()
-#         self.__class__.initiated = True
-
-#     def get_area(self):
-#         ''' Area of a square is its width times width'''
-#         self.area = self.width * self.width
-#         return self.area
-
-#     def __add__(self, other):
-#         if self.width == other.width:
-#             rect = Rectangle(self.width, self.width * 2)
-#             return rect
-#         else:
-#             return None
-# #ex1.1
-# class Rectangle(Shape):
-#     ''' A subclass of Shape, specifically for calculating rectangle area'''
-
-#     def __init__(self,width,length):
-#         self.width = width
-#         self.length = length
-#         self.get_area()
-#         self.__class__.initiated = True
-
-#     def get_area(self):
-#         ''' Area of a rectangle is its width times width'''
-#         self.area = self.width * self.length
-#         return self.area
-# #######################Rectangle calss test start###################################
-# # s = Rectangle(6,8)
-
-# # print(s.is_init())
-# # print(s.get_area())
-# #######################Rectangle class test end######################################
-
-
-# #######################Square class test end######################################
-# s1 = Square(8)
-# s2 = Square(8)
-
-# enroll = s1 + s2
-# print(s1.get_area())
-# print(enroll.get_area())
-#######################Square class test end######################################
-
-
-
-#EX1.2
-# class Basketball:
-
-#     schedule = []
-
-#     def __init__(self, team_name, team_address, team_coach, team_member ):
-#         self.team_name = str(team_number)
-#         self.team_address = str(team_address)
-#         self.team_coach = str(team_coach)
-#         self.team_member = []
-#         for i in range(team_number):
-#             self.team_player.append(i)
-
-#     def match_game(self, team_player):
-#         self.team_player = team_player
-#         for i in range(len(self.team_player)):
-#             team = random.randint(1,len(self.team_player) - 1)
-#             if i != team:
-#                 schedule.append([i,'VS',team])
-#             else:
-#                 continue
-#         return schedule
-
