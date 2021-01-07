@@ -13,7 +13,7 @@ data1 = image.imread(filename1)
 # Display image information
 print('Image type is: ', type(data1))
 print('Image shape is: ', data1.shape)
-print(data1)
+#print(data1)
 
 # Add some color boundaries to modify an image array
 plot_data = data.copy()
