@@ -24,6 +24,7 @@ for width in range(data1.shape[1]):
 # use pyplot to plot the image
 pyplot.imshow(plot_data)
 pyplot.show()
+#from array turn to image
 image_output = Image.fromarray(plot_data)
 image_output.save('lenna_flag.jpg')
 
