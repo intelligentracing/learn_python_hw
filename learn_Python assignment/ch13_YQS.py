@@ -29,7 +29,6 @@ class Vehicle:
 
 #######################Vehicle calss test start#####################################
 volvo = Vehicle('volvo', 'polestar 2', 'sedan')
-print(volvo)
 volvo.set_fuel_level(0.9)
 volvo.check_fuel_level()
 # #######################Vehicle class test end#######################################
