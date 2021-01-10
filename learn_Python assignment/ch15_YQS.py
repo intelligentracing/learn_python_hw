@@ -39,6 +39,8 @@ except IOError:
 finally:
     source_handle.close()
     result_handle.close()
+
+    
 #ex1.2
 
 # Read an image file
