@@ -34,15 +34,28 @@
 #         # throttle=0.9
 #         steering = -0.4
 
+from ROAR.agent_module.special_agents.waypoint_generating_agent import WaypointGeneratigAgent
+
+def main():
+    agent_config = AgentConfig.parse_file(Path("./ROAR_Sim/configurations/agent_configuration.json"))
+    carla_config = CarlaConfig.parse_file(Path("./ROAR_Sim/configurations/configuration.json"))
+
+    carla_runner = CarlaRunner(carla_settings=carla_config,
+                               agent_settings=agent_config,
+                               npc_agent_class=PurePursuitAgent)
+    try:
+        my_vehicle = carla_runner.set_carla_world()
+        agent = WaypointGeneratigAgent(vehicle=my_vehicle, agent_settings=agent_config)
+        carla_runner.start_game_loop(agent=agent, use_manual_control=True)
+    except Exception as e:
+        logging.error(f"Something bad happened during initialization: {e}")
+        carla_runner.on_finish()
+        logging.error(f"{e}. Might be a good idea to restart Server")
 
 
+class WaypointGeneratigAgent(Agent):
+    def __init__(self, vehicle: Vehicle, agent_settings: AgentConfig, **kwargs):
+        super().__init__(vehicle=vehicle, agent_settings=agent_settings, **kwargs)
+        self.output_file_path: Path = self.output_folder_path / "easy_map_waypoints.txt"
+        self.output_file = self.output_file_path.open('w')
 
-def do_twice(a,b):
-   return func(a,b), func(a,b)
-
-def func(a,b):
-    c = a + b
-    print(c)
-
-func(1,2)
-print(do_twice(1,2))
