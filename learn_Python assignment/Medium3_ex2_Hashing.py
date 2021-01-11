@@ -6,10 +6,11 @@ import hashlib
 path = os.path.dirname(os.path.abspath(__file__))
 filename = path + '/' + 'lenna.bmp'
 filename1 = path + '/' + 'lenna_flag.jpg'
-data = image.imread(filename)
+
 
 
 hash_md5 = hashlib.md5()
+data = image.imread(filename)
 text = bytearray(data)
 hash_md5.update(text)
 print(hash_md5.hexdigest())
