@@ -11,7 +11,8 @@ class Finance:
         sourse_file = open(path + '/' + self.filename, 'r')
         for line in sourse_file.readlines()[1:]:
             line_list = line.split(',')
-            self.price_history[line_list[0]] = line_list[1:]
+            line_list[-1] = line_list[-1].replace("\n", '')
+            self.price_history[line_list[0]] = tuple(line_list[1:])
 
 
     def price_average(self):
@@ -33,6 +34,6 @@ class Finance:
         return result_list
 #######################Finance class test #######################################
 aapl = Finance('AAPL.csv')
-print(aapl.price_history)
+#print(aapl.price_history)
 #print(aapl.price_average())
 print(aapl.price_search(103, 199))
