@@ -24,5 +24,6 @@ def decode(string):
     user_input = ''.join(user_input)
     return user_input
 
-print(encode('Rachel'))
-print(decode('Tcejgn'))
+if __name__=='__main__':
+    print(encode('Rachel'))
+    print(decode('Tcejgn'))
