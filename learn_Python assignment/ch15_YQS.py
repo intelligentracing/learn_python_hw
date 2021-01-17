@@ -22,7 +22,7 @@ try:
         #With the '|' delimiter, divide each line into a list of several strings, with the company name between the first '|' and the second '|'
         #lLine_list [1] is the name of the company so line_list[1] is added to the company
         line_list = line.split('|')
-        print(line_list)
+        #print(line_list)
         company.append(line_list[1])
     sorted_company = sorted(company)#The company in order
 
