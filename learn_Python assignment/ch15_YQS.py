@@ -43,41 +43,41 @@ finally:
     
 #ex1.2
 
-# # Read an image file
-# path = os.path.dirname(os.path.abspath(__file__))
-# filename = path + '/' + 'lenna.bmp'
-# filename1 = path + '/' + 'lena10.jpg'#read lena10.jpg，the location of it is the same with lenna.bmp
-# lenna_bmp = image.imread(filename)
-# lenna_jpg = image.imread(filename1)
+# Read an image file
+path = os.path.dirname(os.path.abspath(__file__))
+filename = path + '/' + 'lenna.bmp'
+filename1 = path + '/' + 'lena10.jpg'#read lena10.jpg，the location of it is the same with lenna.bmp
+lenna_bmp = image.imread(filename)
+lenna_jpg = image.imread(filename1)
 
-# # Add some color boundaries to modify an image array
-# plot_data = lenna_bmp.copy()
-# plot_data1 = lenna_jpg.copy()
+# Add some color boundaries to modify an image array
+plot_data = lenna_bmp.copy()
+plot_data1 = lenna_jpg.copy()
 
-# #An image defined in advance in order to evaluate the difference graph
-# plot_data2 = lenna_bmp.copy()
-# print(plot_data2)
+#An image defined in advance in order to evaluate the difference graph
+plot_data2 = lenna_bmp.copy()
+print(plot_data2)
 
 
-# #The sum of the differences of the three channels defined in advance to calculate the average difference
-# r_sum = 0
-# g_sum = 0
-# b_sum = 0
-# for width in range(512):
-#     for height in range(512):
-#         plot_data2[height][width] = abs(plot_data[height][width] -plot_data1[height][width] )#Calculate the difference graph
-#         r_sum += plot_data2[height][width][0]#Sum of the differences of R channels
-#         g_sum += plot_data2[height][width][1]#Sum of the differences of G channels
-#         b_sum += plot_data2[height][width][2]#Sum of the differences of B channels
-# r_average = r_sum / (512* 512)#The average difference of R channels
-# g_average = g_sum / (512* 512)#The average difference of G channels
-# b_average = b_sum / (512* 512)#The average difference of B channels
+#The sum of the differences of the three channels defined in advance to calculate the average difference
+r_sum = 0
+g_sum = 0
+b_sum = 0
+for width in range(512):
+    for height in range(512):
+        plot_data2[height][width] = abs(plot_data[height][width] -plot_data1[height][width] )#Calculate the difference graph
+        r_sum += plot_data2[height][width][0]#Sum of the differences of R channels
+        g_sum += plot_data2[height][width][1]#Sum of the differences of G channels
+        b_sum += plot_data2[height][width][2]#Sum of the differences of B channels
+r_average = r_sum / (512* 512)#The average difference of R channels
+g_average = g_sum / (512* 512)#The average difference of G channels
+b_average = b_sum / (512* 512)#The average difference of B channels
 
-# # use pyplot to plot the image，display difference graph
-# pyplot.imshow(plot_data2)
-# pyplot.show()
+# use pyplot to plot the image，display difference graph
+pyplot.imshow(plot_data2)
+pyplot.show()
 
-# print(r_average,g_average,b_average)
+print(r_average,g_average,b_average)
 
 
 
