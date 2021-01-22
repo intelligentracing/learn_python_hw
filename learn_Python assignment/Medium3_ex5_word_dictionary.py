@@ -33,5 +33,7 @@ for page in range(page_number):
                 frequency_table[real_word] += 1
             else:
                 frequency_table[real_word] = 1
+    # in the frequency_table exists page_number's invalid 'pages' words
+    frequency_table['pages'] = frequency_table['pages'] - page_number
 
 print(frequency_table)
