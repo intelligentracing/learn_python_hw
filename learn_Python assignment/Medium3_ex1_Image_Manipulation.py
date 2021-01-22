@@ -6,9 +6,9 @@ from PIL import Image
 # Read an image file
 path = os.path.dirname(os.path.abspath(__file__))
 filename = path + '/' + 'lenna.bmp'
-filename1 = path + '/' + 'china-flag-icon-64.png'
+flag = path + '/' + 'china-flag-icon-64.png'
 data = image.imread(filename)
-data1 = image.imread(filename1)
+data1 = image.imread(flag)
 
 # Display image information
 print('Image type is: ', type(data1))
