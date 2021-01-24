@@ -105,4 +105,7 @@ def chess_game(board_size, king, knight, legit_moves):
             print(display_string)
         board_display[move_position_king[0]][move_position_king[1]] = ' * '
         board_display[current_move[2][0]][current_move[2][1]] = ' * '
-chess_game(board_size, king_start,knight_start, knight_moves)
+
+
+if __name__ == "__main__":
+    chess_game(board_size, king_start,knight_start, knight_moves)
