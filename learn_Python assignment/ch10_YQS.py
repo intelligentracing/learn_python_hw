@@ -9,15 +9,15 @@ def DP_num(num):
     dp_list[0] = 0
     dp_list[1] = 1
     dp_list[2] = 1
-    for i in range(4, len(dp_list) + 1):
+    for i in range(3, len(dp_list) + 1):
         #相当于第一种情况i - 1
-        minn = [dp_list[i - 2]]
+        minn = [dp_list[i - 1]]
         if i%2 == 0:
-            minn.append(dp_list[(i - 1)//2])
+            minn.append(dp_list[i//2])
         if i%3 == 0:
-            minn.append(dp_list[(i - 1) // 3])
+            minn.append(dp_list[i // 3])
         #从这三步里找出步数最少的那个 + 1就是这个数字到1的最少步数
-        dp_list[i - 1] = min(minn) + 1
+        dp_list[i] = min(minn) + 1
         
     return dp_list[-1]
 
