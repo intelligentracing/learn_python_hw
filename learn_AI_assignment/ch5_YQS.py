@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import os
-#ex1
 # load file
 path = os.path.dirname(os.path.abspath(__file__))
 filename = path + '/highway_video.mp4'
