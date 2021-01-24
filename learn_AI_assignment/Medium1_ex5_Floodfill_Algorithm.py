@@ -32,15 +32,15 @@ try:
         # (loDiff1,loDiff2,loDiff3)：是相对于seed种子点像素可以往下的像素值，即seed(B0,G0,R0)，泛洪区域下界为（B0-loDiff1,G0-loDiff2,R0-loDiff3）
         # (upDiff1,upDiff2,upDiff3)：是相对于seed种子点像素可以往上的像素值，即seed(B0,G0,R0)，泛洪区域上界为（B0+upDiff1,G0+upDiff2,R0+upDiff3）
         # flag：为泛洪算法的处理模式。低八位 控制算法的连通性，是以seed点为中心，接着判断周围的几个像素点，再将泛洪区域像素点周围的几个像素点进行考虑。 一般为4，8；默认为4
-        cv2.floodFill(frame, None, seedPoint = seed, newVal = (255, 0, 0), 
-            loDiff=(3,3,3), upDiff = (3,3,3), flags = 8)
+        # cv2.floodFill(frame, None, seedPoint = seed, newVal = (255, 0, 0), 
+        #     loDiff=(3,3,3), upDiff = (3,3,3), flags = 8)
     
 
         #(2)Only return the flood fill results in the mask image and do not modify the input image.
         #mask必须行和列都加2，且必须为uint8单通道阵列,为什么要加2可以这么理解：当从0行0列开始泛洪填充扫描时，mask多出来的2可以保证扫描的边界上的像素都会被处理
         mask = np.zeros([height+2,width+2],np.uint8)
-        # cv2.floodFill(frame, mask, seedPoint = seed, newVal = (255, 0, 0), 
-        #     loDiff=(3,3,3), upDiff = (3,3,3),cv2.FLOODFILL_MASK_ONLY)
+        cv2.floodFill(frame, mask, seedPoint = seed, newVal = (255, 0, 0), 
+            loDiff=(3,3,3), upDiff = (3,3,3),flags = cv2.FLOODFILL_MASK_ONLY)
 
             
         # Augment the illustration of the seed point
@@ -48,7 +48,8 @@ try:
 
         output.write(frame)
 
-        cv2.imshow('Road', frame)
+        #cv2.imshow('Road', frame)
+        cv2.imshow('Mask', mask)
         key = cv2.waitKey(1)
         if key == ord('q'):
             break
