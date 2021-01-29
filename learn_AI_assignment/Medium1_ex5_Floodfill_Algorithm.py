@@ -39,8 +39,10 @@ try:
         #(2)Only return the flood fill results in the mask image and do not modify the input image.
         #mask必须行和列都加2，且必须为uint8单通道阵列,为什么要加2可以这么理解：当从0行0列开始泛洪填充扫描时，mask多出来的2可以保证扫描的边界上的像素都会被处理
         mask = np.zeros([height+2,width+2],np.uint8)
+        mask_fill = 255
+        flags = 4|(mask_fill<<8)|cv2.FLOODFILL_MASK_ONLY
         cv2.floodFill(frame, mask, seedPoint = seed, newVal = (255, 0, 0), 
-            loDiff=(3,3,3), upDiff = (3,3,3),flags = cv2.FLOODFILL_MASK_ONLY)
+            loDiff=(3,3,3), upDiff = (3,3,3),flags = flags)
 
             
         # Augment the illustration of the seed point
