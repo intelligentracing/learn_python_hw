@@ -12,7 +12,7 @@ def encode(string):
         #chr() function to convert the ASCII code back to a single character.
         result = chr(ord(original) + encryption)
         user_input.append(result)
-    user_input = ''.join(user_input)
+    user_input = ''.join(user_input)#['a','1','1'] -> '1 1 1'
     return user_input
 
 def decode(string):
@@ -26,4 +26,5 @@ def decode(string):
 
 if __name__=='__main__':
     print(encode('Rachel'))
+
     print(decode('Tcejgn'))
