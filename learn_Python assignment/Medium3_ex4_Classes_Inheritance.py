@@ -49,7 +49,7 @@ class ElectricVehicle(Vehicle):
         return 'the charge level has been update:{}%'.format(self.charge_level)
 
 ########################### test Vehicle & ElectricVehicle class #####################################
-M4 = Vehicle('BMV','M4','van')
+M4 = Vehicle('BMW','M4','van')
 print(M4.check_fuel_level(0.5))
 print(M4.set_fuel_level(1))
 
