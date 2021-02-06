@@ -59,8 +59,8 @@ def chess_game(board_size, king, knight, legit_moves):
         #eval()convert the argument into int type
         move_position_king = list(eval(user_input))
 
-        # Input sanity check
-        #judge whether king out of boundard or it is ordered the principle of king
+        # sanity check
+        # judge whether king out of boundard or it is ordered the principle of king
         if move_position_king[0] < 0 or move_position_king[1] < 0 or\
            move_position_king[0] >= board_size[0] or move_position_king[1] >= board_size[1] or \
            abs(move_position_king[0] - current_move[1][0])> 1 or abs(move_position_king[1] - current_move[1][1]) > 1:
@@ -93,6 +93,7 @@ def chess_game(board_size, king, knight, legit_moves):
                     display_string = ''.join(board_display[i])
                     print(display_string)
                 return
+                
             # 给search_stack添加符合条件步法的distance_move和它的坐标即move_position,然后从大到小进行排序
             search_stack.append((distance_move, move_position_king, move_position_knight))
         search_stack.sort(reverse=True)
