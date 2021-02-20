@@ -32,7 +32,9 @@ def division_hashing(text):
                        # Otherwise the current text_new[I] will be the last value of j in the following code which is 'z'
         for j in letters:
             text_new[i] = j
+            #'We can" ->  text_new = 'we can'
             #Evaluates the hash value, which is hash_new
+
             for a in text_new:
                 sum1 = sum1 * 256 + ord(a)
 
