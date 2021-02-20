@@ -49,14 +49,10 @@ def histogram(a):
         #Checks if the string consists of only letters
         word =word.lower()
         
-        for e in word:
-            letter = []
-            if e.isalpha():
-                letter.append(e)
+        
+                real_word = ''.join(element for e in word )
             else:
                 continue
-            #letter = ['n','o',...]
-            real_word = ''.join(element for element in letter )
              
             if real_word in d:  
                 d[real_word]+= 1
