@@ -32,12 +32,12 @@ def solution(price, n):
         price：It's a list of prices sold for different meters
         n:It's an int, how many meters are there in this sausage
     """
-    dp = [0] * n
+    dp = [0] * n    #subproblem optimal solution
     for i in range(n):      #start at 1 meter, and calculate the highest selling price
         dp[i] = price[i]    #The price when i meters are sold as a whole
         for j in range(i):  
             #When i meters are sold separately。The key: Turn a big problem into a small problem, 
-            #and the optimal solution to the small problem is also the optimal solution to the big problem.
+            #and the optimal solution to the small problem is also the optimal solution to the big problem
             if dp[i - j-1] + dp[j] > dp[i]: #Compare that to selling as a whole
                 dp[i] = dp[i-j-1] + dp[j]
     return dp[-1]
