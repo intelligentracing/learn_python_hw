@@ -37,7 +37,7 @@ def division_hashing(text):
 
             for a in text_new:
                 sum1 = sum1 * 256 + ord(a)
-
+                 
             hash_new = sum1 % hash_prime_number
 
             #Determines whether the hash value is the original hash value of the given string,original value is 20
