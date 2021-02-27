@@ -1,46 +1,53 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+
 #ex1.1
+# def rotationMatrix(degree):
+#     '''input: A function of the counterclockwise rotation Angle
+#        output:rotation matix
+#     '''
+#     c = np.cos(np.radians(degree))
+#     s = np.sin(np.radians(degree))
+#     return np.array([[c, -s], [s, c]])
 
-def rotationMatrix(degree):
-    '''input: A function of the counterclockwise rotation Angle
-       output:rotation matix
-    '''
-    c = np.cos(np.radians(degree))
-    s = np.sin(np.radians(degree))
-    return np.array([[c, -s], [s, c]])
+# input_times = input('input any time in XX:XX format：')
 
-input_times = input('input any time in XX:XX format：')
+# #Input_times is a string format in which the time is extracted by the spilt function
+# #['8','10']
+# input_times_spilt = input_times.split(':')
+# hours = int(input_times_spilt[0])#Change from string to integer format
+# minutes = int(input_times_spilt[1])
 
-#Input_times is a string format in which the time is extracted by the spilt function
-input_times_spilt = input_times.split(':')
-hours = int(input_times_spilt[0])#Change from string to integer format
-minutes = int(input_times_spilt[1])
+# #The Angle of rotation in the hour hand, because the rotation matrix is rotating counterclockwise, 
+# # so you have to subtract it from 360
+# if hours > 12:
+#     hours = hours - 12
+#     hours_degree = 360 - (30 * (hours + minutes/60))
+# else:
+#     hours_degree = 360 - (30 * (hours + minutes/60))
+# minutes_degree = 360 - (6 * minutes)
 
-#The Angle of rotation in the hour hand, because the rotation matrix is rotating counterclockwise, 
-# so you have to subtract it from 360
-hours_degree = 360 - (30 * (hours + minutes/60))
-minutes_degree = 360 - (6 * minutes)
+# #The original vectors of the hour hand and the minute hand, they represent in the x and y coordinates
+# #the vertical and vertical lengths are 1 and 2, respectively
+# #vecter transpose
+# v1 = np.array([[0.,1.]]).T 
+# v2 = np.array([[0.,2.]]).T 
+# rotation_hours = rotationMatrix(hours_degree)
+# rotation_minutes = rotationMatrix(minutes_degree)
 
-#The original vectors of the hour hand and the minute hand, they represent in the x and y coordinates
-#the vertical and vertical lengths are 1 and 2, respectively
-v1 = np.array([[0.,1.]]).T 
-v2 = np.array([[0.,2.]]).T 
-rotation_hours = rotationMatrix(hours_degree)
-rotation_minutes = rotationMatrix(minutes_degree)
+# #dot product and get the rotated version of the vector
+# v1_new = rotation_hours.dot(v1)#shape of rotation hours(2,2) ; shape of v1(2,1); shape of v1_new(2, 1)
+# v2_new = rotation_minutes.dot(v2)
 
-#dot product and get the rotated version of the vector
-v1_new = rotation_hours.dot(v1)#shape of rotation hours(2,2) ; shape of v1(2,1); shape of v1_new(2, 1)
-v2_new = rotation_minutes.dot(v2)
+# #print results
+# plt.arrow(0,5,v1_new[0, 0],v1_new[1, 0], head_width=0.2, head_length=0.4, color = 'b')
+# plt.arrow(0,5,v2_new[0, 0],v2_new[1, 0],head_width=0.2, head_length=0.4, color = 'r')
 
-#print results
-plt.arrow(0,5,v1_new[0, 0],v1_new[1, 0], head_width=0.2, head_length=0.4, color = 'b')
-plt.arrow(0,5,v2_new[0, 0],v2_new[1, 0],head_width=0.2, head_length=0.4, color = 'r')
+# #Parameter represents the value range of horizontal and vertical coordinates
+# plt.axis([-5,5,0,10])
+# plt.show()
 
-#Parameter represents the value range of horizontal and vertical coordinates
-plt.axis([-5,5,0,10])
-plt.show()
 
 #ex1.2
 #(1)copy its submatrix of [:2,:2] ，the submatrix is：[[7,8],[1,3]]
@@ -83,12 +90,13 @@ plt.show()
 
 plt.figure()#Delete the last image displayed
 
-#before the rotation: new_matrix_cut
+#before the rotation: new_matrix
 plt.arrow(5,0,new_matrix[0,0],new_matrix[1,0], head_width=0.2, head_length=0.4, color = 'b')
 plt.arrow(5,0,new_matrix[0,1],new_matrix[1,1], head_width=0.2, head_length=0.4, color = 'b')
 #after the rotation: new_matrix_dot
 plt.arrow(5,0,new_matrix_dot[0,1],new_matrix_dot[1,1], head_width=0.2, head_length=0.4, color = 'r')
 plt.arrow(5,0,new_matrix_dot[0,0],new_matrix_dot[1,0], head_width=0.2, head_length=0.4, color = 'r')
+plt.arrow(2,3,2,4,head_width = 0.2,head_length = 0.4, color = 'r')
 plt.axis([0,20,-10,10])
 plt.show()
 
@@ -98,40 +106,6 @@ plt.show()
 
 
 
-
-
-
-import matplotlib.pyplot as plt
-import numpy as np
-from datetime import datetime
-import os
-
-#ex1.1
-# fig, ax = plt.subplots()
-# ax.spines['left'].set_position(('data',0))#将横纵坐标对齐
-# ax.spines['bottom'].set_position(('data',0))
-# ax.spines['right'].set_color('none')
-# ax.spines['top'].set_color('none')
-# #第一个正方形的横坐标数组
-# x0 = np.array([4,7,7,4,4])
-# y0 = np.array([0,0,3,3,0])
-# plt.plot(x0, y0, color = 'r', linewidth = 2)
-
-# #第二个正方形的横坐标数组
-# x1 = np.array([7,7,11,11,7])
-# y1 = np.array([3,7,7,3,3])
-# plt.plot(x1, y1, 'b', linewidth = 1)
-
-# #第三个正方形的横坐标数组
-# x2 = np.array([4,7,3,0,4])
-# y2 = np.array([3,7,10,6,3])
-# plt.plot(x2, y2, 'y', linewidth = 3)
-
-# #使横纵坐标单位长度统一
-# plt.axis('scaled')
-# plt.xticks(np.arange(0,12,2))
-# plt.yticks(np.arange(0,12,2))
-# plt.show()
 # #ex1.2
 
 # # Initialization, define some constant
