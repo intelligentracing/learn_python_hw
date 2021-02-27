@@ -96,7 +96,6 @@ plt.arrow(5,0,new_matrix[0,1],new_matrix[1,1], head_width=0.2, head_length=0.4, 
 #after the rotation: new_matrix_dot
 plt.arrow(5,0,new_matrix_dot[0,1],new_matrix_dot[1,1], head_width=0.2, head_length=0.4, color = 'r')
 plt.arrow(5,0,new_matrix_dot[0,0],new_matrix_dot[1,0], head_width=0.2, head_length=0.4, color = 'r')
-plt.arrow(2,3,2,4,head_width = 0.2,head_length = 0.4, color = 'r')
 plt.axis([0,20,-10,10])
 plt.show()
 
