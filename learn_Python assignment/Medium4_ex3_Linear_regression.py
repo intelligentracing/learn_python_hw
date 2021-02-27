@@ -47,7 +47,7 @@ y_pred = model.predict([[365]])
 y_pred_30 = model.predict([[365+30]])
 print('今天的股价是：',y_pred)
 print('30天之后的股价是: ', y_pred_30)
-rms = mean_squared_error(np.array(y[-1]), y_pred)
+#rms = mean_squared_error(np.array(y[-1]), y_pred)
 #预测数据与原始数据均值之差的平方和/原始数据和原始数据均值之差的平方和
 #print('模型的衡量指标Squared：',rms)
 
