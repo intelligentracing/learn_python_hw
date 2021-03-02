@@ -68,6 +68,7 @@ class Basketball:
         print("add a team member")
 
     def generate_game(self, component):
+        #league_list[1:] ==> length == 15
         for i in component:
             self.schedule.append((self.team_name, i.team_name))
             self.schedule.append((i.team_name, self.team_name))
@@ -79,6 +80,7 @@ class Basketball:
 # #######################basketball class test start##################################
 import random
 import string
+
 s = string.ascii_uppercase
 league_list = []
 for i in range(16):
