@@ -4,9 +4,10 @@ from mpl_toolkits import mplot3d
 from math import exp
 from math import pi
 from scipy.stats import multivariate_normal
-
+# the first model
 mu0 = [1, 2]
 sigma0 = 1
+#the second model
 mu1 = [-3, 1]
 sigma1 = 1.5
 
@@ -33,7 +34,7 @@ def proability(x, y):
         x_sample_1.append(round(x, 1))
         y_sample_1.append(round(y, 1))
     plt.plot(x_sample_1, y_sample_1, 'bD')
-
+#(1) Use numpy.meshgrid() to generate a grid of samples between -5 and 5 for both X axis and Y axis and use stepsize = 0.1.
 x_rr,y_rr = np.meshgrid(np.arange(-5,5,0.1),np.arange(-5,5,0.1))
 
 for i in range(len(x_rr[0])):
