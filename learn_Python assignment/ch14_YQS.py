@@ -23,7 +23,7 @@ class Rectangle(Shape):
         self.__class__.initiated = True
 
     def get_area(self):
-        ''' Area of a rectangle is its width times width'''
+        ''' Area of a rectangle is its width times length'''
         self.area = self.width * self.length
         return self.area
 #######################Rectangle calss test start###################################
