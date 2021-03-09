@@ -51,23 +51,23 @@ plt.show()
 
 #######3D display#######
 
-#x.flat: Return a copy of the array collapsed into one dimension.
-#np.column_stack将两个矩阵合并
-xy = np.column_stack([x_rr.flat, y_rr.flat])
-means = np.array([-3, 1])
-sigma = np.array([1.5, 1.5])
-#当 np.diag(array) 中
-#array是一个1维数组时，结果形成一个以一维数组为对角线元素的矩阵
-#array是一个二维矩阵时，结果输出矩阵的对角线元素
-covariance = np.diag(sigma**2)
-# multivariate_normal.pdf生成多元正态分布
-#multivariate_normal.pdf（依据的坐标点，均值，协方差）
-z = multivariate_normal.pdf(xy, mean=means, cov=covariance)
-z = z.reshape(x_rr.shape)
-fig2 = plt.figure()
-ax2 = fig2.add_subplot(111, projection='3d')
-ax2.plot_surface(x_rr,y_rr,z)
-plt.show()
+# #x.flat: Return a copy of the array collapsed into one dimension.
+# #np.column_stack将两个矩阵合并
+# xy = np.column_stack([x_rr.flat, y_rr.flat])
+# means = np.array([-3, 1])
+# sigma = np.array([1.5, 1.5])
+# #当 np.diag(array) 中
+# #array是一个1维数组时，结果形成一个以一维数组为对角线元素的矩阵
+# #array是一个二维矩阵时，结果输出矩阵的对角线元素
+# covariance = np.diag(sigma**2)
+# # multivariate_normal.pdf生成多元正态分布
+# #multivariate_normal.pdf（依据的坐标点，均值，协方差）
+# z = multivariate_normal.pdf(xy, mean=means, cov=covariance)
+# z = z.reshape(x_rr.shape)
+# fig2 = plt.figure()
+# ax2 = fig2.add_subplot(111, projection='3d')
+# ax2.plot_surface(x_rr,y_rr,z)
+# plt.show()
 
 
 
