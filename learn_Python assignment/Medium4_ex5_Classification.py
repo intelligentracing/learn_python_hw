@@ -40,7 +40,7 @@ def proability(x, y):
         y_sample_1.append(round(y, 1))
     plt.scatter(x_sample_1, y_sample_1, color = 'blue', s = 0.1)
 #(1) Use numpy.meshgrid() to generate a grid of samples between -5 and 5 for both X axis and Y axis and use stepsize = 0.1.
-x_rr,y_rr = np.meshgrid(np.arange(-5,10,0.1),np.arange(-5,10,0.1))
+x_rr,y_rr = np.meshgrid(np.arange(-5,5,0.1),np.arange(-5,5,0.1))
 
 
 for i in range(len(x_rr[0])):
