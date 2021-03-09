@@ -33,12 +33,12 @@ def proability(x, y):
         #x:数据，y:要保留的小数点位数
         x_sample_0.append(round(x,1))
         y_sample_0.append(round(y,1))
-    plt.plot(x_sample_0,y_sample_0,'r*')
+    plt.scatter(x_sample_0,y_sample_0,color = 'red',s = 0.1)
 
     if proability1 > proability0: 
         x_sample_1.append(round(x, 1))
         y_sample_1.append(round(y, 1))
-    plt.plot(x_sample_1, y_sample_1, 'bD')
+    plt.scatter(x_sample_1, y_sample_1, color = 'blue', s = 0.1)
 #(1) Use numpy.meshgrid() to generate a grid of samples between -5 and 5 for both X axis and Y axis and use stepsize = 0.1.
 x_rr,y_rr = np.meshgrid(np.arange(-5,10,0.1),np.arange(-5,10,0.1))
 
@@ -57,11 +57,11 @@ xy = np.column_stack([x_rr.flat, y_rr.flat])
 means = np.array([-3, 1])
 sigma = np.array([1.5, 1.5])
 #当 np.diag(array) 中
-
 #array是一个1维数组时，结果形成一个以一维数组为对角线元素的矩阵
-
 #array是一个二维矩阵时，结果输出矩阵的对角线元素
 covariance = np.diag(sigma**2)
+# multivariate_normal.pdf生成多元正态分布
+#multivariate_normal.pdf（依据的坐标点，均值，协方差）
 z = multivariate_normal.pdf(xy, mean=means, cov=covariance)
 z = z.reshape(x_rr.shape)
 fig2 = plt.figure()
