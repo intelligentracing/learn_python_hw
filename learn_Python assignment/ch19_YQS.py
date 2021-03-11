@@ -25,7 +25,7 @@ plt.plot(x, y, 'r-', linewidth = 3)
 line = None
 def onclick(event):
     global line
-
+    #清除上一次画的线
     if not line == None:
         line.remove()
 
@@ -48,7 +48,7 @@ def onclick(event):
             # 只有它的y值比用户点的点靠下以及新点与原点的距离比delta1更大，
             # 才说明新点比上一步更靠下，更靠近最小值
             if value_next < value and value - value_next > delta1:
-                delta1 = value -value_next#delta是新产生的下降点与原点之间的距离
+                delta1 = value -value_next#delta1是新产生的下降点与原点之间的距离
                 x_next = x_try
         #sainty check whether the next step is refreshing
         if(x_next == x1).all():
