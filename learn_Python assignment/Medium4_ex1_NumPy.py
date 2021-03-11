@@ -32,7 +32,7 @@ def swap_cols(M, a, b):
     if max(a,b) > M.shape[0] :
         print('Error! index out of bound')
         return None
-    
+    # transpose T
     M_1 = M.T.copy()
     M = M.T
     M_1[a-1] = M[b-1]
