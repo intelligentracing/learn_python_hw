@@ -27,8 +27,8 @@ y_sample_1 = []
 #to Model 0 and Model 1, and perform the classification.
 def proability(x, y):
     #根据两组mu 和 sigma值构建两个类别
-    proability0 = 1 / (2 * np.pi* sigma0)*np.exp(((x - mu0[0])**2 + (y - mu0[1])**2) / (2*sigma0**2))
-    proability1 = 1 / (2 * np.pi * sigma1) * np.exp(((x - mu1[0]) ** 2 + (y - mu1[1]) ** 2) / (2 * sigma1 ** 2))
+    proability0 = 1 / (2 * np.pi* sigma0**2)*np.exp(((x - mu0[0])**2 + (y - mu0[1])**2) / (2*sigma0**2))
+    proability1 = 1 / (2 * np.pi * sigma1**2) * np.exp(((x - mu1[0]) ** 2 + (y - mu1[1]) ** 2) / (2 * sigma1 ** 2))
     if proability0 > proability1:
         #x:数据，y:要保留的小数点位数
         x_sample_0.append(round(x,1))
