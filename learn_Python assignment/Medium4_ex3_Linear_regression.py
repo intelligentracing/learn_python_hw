@@ -14,7 +14,7 @@ source_handle = open(path+'/'+source_filename,'r')
 closing_price_dictionary = dict()
 for line in source_handle.readlines()[1:]:
     line_list = line.split(',')
-    closing_price_dictionary[line_list[0]] = line_list[6]
+    closing_price_dictionary[line_list[0]] = line_list[4]
 
 #将字符串格式的日期转换为日期格式，
 # 解决股市周末不开盘总天数达不到365天的问题
@@ -22,6 +22,7 @@ start = ''
 key_list = [] 
 #用于区分start日期和之后的日期
 n = 0
+#'2019-08-06': 197.0001
 for key,value in closing_price_dictionary.items():
     if n == 0:
         start = datetime.datetime.strptime(key,'%Y-%m-%d')
